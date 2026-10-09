@@ -34,10 +34,11 @@ are not silently included.
    yet. Confirm emergency-revocation and backup-contact responsibilities.
    Sean's existing public PGP key is included; confirm its use for the review
    challenge and obtain Emma's public PGP key.
-3. Production keys will be backed up. Document signing-key custody, access
-   controls, protected backup storage,
-   recovery, rotation and compromise response. Confirm the rationale for
-   the leaf certificate's ten-year lifetime and module-signing key lifecycle.
+3. Planned custody is two encrypted removable copies in locked offsite storage,
+   with one brought to the office for signing. KEY-PROTECTION.md defines the
+   proposed requirements. Implement and verify them before claiming operational
+   custody; confirm emergency roles, certificate lifetime rationale and the
+   separate module-signing key lifecycle.
 4. Freeze one Fedora shipping cohort: kernel, module certificate, bootloader,
    stub, installer/recovery/installed UKIs and selectable EFI utilities.
    Include executable hashes, signatures, exact SBAT rows, source commits,
@@ -46,8 +47,10 @@ are not silently included.
    installer and installed boots; unsigned-loader, modified-UKI and
    unsigned-module rejection with signed positive controls; NX compatibility.
    Include DAVE commissioning/S4 checks where that shipping path differs.
-6. Complete README answers, publish the reviewed repository/tag when Sean
-   authorizes it, then open the upstream shim-review issue. No contribution
+6. Sean has authorized submission on the basis of accurately stated key
+   requirements. Complete the remaining README answers and evidence, publish
+   the reviewed repository/tag, then open the upstream shim-review issue.
+   Do not attest that planned controls already exist. No contribution
    to other applicants' reviews is claimed without evidence.
 
 ## Microsoft handoff after shim-review acceptance

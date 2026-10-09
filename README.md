@@ -152,9 +152,12 @@ e0fa2d72123cd218ac25c1d46ea991ffe7f1cea7cbe597b87a04dd28cc4df7c7
 ### How do you manage and protect the keys used in your shim?
 
 The Vale private Secure Boot key is outside the repository and build contexts;
-only its public DER is embedded. Production keys will be backed up. The signing
-and backup access controls, storage protection, recovery, rotation and
-revocation responsibilities remain to be documented.
+only its public DER is embedded. The planned production arrangement is two
+encrypted removable copies kept in locked offsite storage, with one brought
+to the office and connected to the build machine only for signing sessions.
+KEY-PROTECTION.md defines the proposed custody, session, recovery and compromise
+requirements. These controls are planned, not yet attested as operational;
+implementation and recovery checks remain required before production use.
 
 ### Do you use EV certificates as embedded certificates in the shim?
 
@@ -164,7 +167,10 @@ the Vale Secure Boot certificate embedded in shim.
 
 ### Are you embedding a CA certificate in your shim?
 
-No. It is a dedicated code-signing leaf (CA:FALSE). The ten-year validity and rotation rationale still require confirmation.
+No. It is a dedicated code-signing leaf (CA:FALSE). The proposed policy requires
+annual review and incident-triggered replacement regardless of the certificate's
+ten-year validity. The final validity rationale and rotation mechanism remain
+to be confirmed.
 
 ### Do you add a vendor-specific SBAT entry to the SBAT section in each binary that supports SBAT metadata ( GRUB2, fwupd, fwupdate, systemd-boot, systemd-stub, shim + all child shim binaries )?
 
