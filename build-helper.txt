@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+output=${1:?usage: build-vale-shim.sh OUTPUT_DIRECTORY}
+mkdir -p "$output"
+output=$(realpath "$output")
+cd "$repo_root"
+podman build --no-cache --iidfile "$output/image-id" -t localhost/vale-shim:16.1 -f elementary/shim/Dockerfile . 2>&1 | tee "$output/build.log"
+podman run --rm --network none -v "$output:/export:rw" "$(cat "$output/image-id")" sh -c 'cp /output/* /export/; cd /export; sha256sum ./*.efi >SHA256SUMS'

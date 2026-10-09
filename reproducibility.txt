@@ -1,0 +1,6 @@
+04d144f2e95277cadf8ea973c8ead5b6161e9a5c2d3803550c936c18f070fe3b  out/shim-build/nx-first/fbx64.efi
+00337c7e66e05790b8e8e6f1cf1cd8ebef883552750a051b51618b2d77ebd837  out/shim-build/nx-first/mmx64.efi
+e0fa2d72123cd218ac25c1d46ea991ffe7f1cea7cbe597b87a04dd28cc4df7c7  out/shim-build/nx-first/shimx64.efi
+04d144f2e95277cadf8ea973c8ead5b6161e9a5c2d3803550c936c18f070fe3b  out/shim-build/nx-second/fbx64.efi
+00337c7e66e05790b8e8e6f1cf1cd8ebef883552750a051b51618b2d77ebd837  out/shim-build/nx-second/mmx64.efi
+e0fa2d72123cd218ac25c1d46ea991ffe7f1cea7cbe597b87a04dd28cc4df7c7  out/shim-build/nx-second/shimx64.efi

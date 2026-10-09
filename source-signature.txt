@@ -1,0 +1,16 @@
+[GNUPG:] NEWSIG
+gpg: Signature made Tue Aug 19 18:04:13 2025 BST
+gpg:                using RSA key 02093E0D19DDE0F7DFFBB53C1FD3F540256A1372
+[GNUPG:] KEY_CONSIDERED B00B48BC731AA8840FED9FB0EED266B70F4FEF10 0
+[GNUPG:] SIG_ID mH6zQIZVHZQXRGA9QSSTiLfLeL4 2025-08-19 1755623053
+[GNUPG:] GOODSIG 1FD3F540256A1372 Peter Jones <pjones@redhat.com>
+gpg: Good signature from "Peter Jones <pjones@redhat.com>" [unknown]
+gpg:                 aka "Peter Jones <pmjones@gmail.com>" [unknown]
+gpg:                 aka "Peter Jones <pjones@fedoraproject.org>" [unknown]
+[GNUPG:] VALIDSIG 02093E0D19DDE0F7DFFBB53C1FD3F540256A1372 2025-08-19 1755623053 0 4 0 1 10 00 B00B48BC731AA8840FED9FB0EED266B70F4FEF10
+[GNUPG:] KEY_CONSIDERED B00B48BC731AA8840FED9FB0EED266B70F4FEF10 0
+[GNUPG:] TRUST_UNDEFINED 0 pgp
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: B00B 48BC 731A A884 0FED  9FB0 EED2 66B7 0F4F EF10
+     Subkey fingerprint: 0209 3E0D 19DD E0F7 DFFB  B53C 1FD3 F540 256A 1372
