@@ -28,13 +28,14 @@ are not silently included.
 
 ## Answers and evidence still required
 
-1. Confirm worldwide deployment, including whether non-Star-Labs firmware
-   needs to trust Vale. Explain why distributing a globally trusted shim is
-   necessary rather than relying on controlled firmware enrollment.
-2. Confirm primary and secondary security-update and emergency-revocation
-   responsibilities. Sean's existing public PGP key is included; confirm its
-   use for the review challenge and supply Emma's public PGP key.
-3. Document production Vale signing-key custody, access controls, backup,
+1. Worldwide deployment is confirmed: Vale must boot on non-Star-Labs PCs
+   without requiring enrollment of the Vale key in third-party firmware.
+2. Sean owns updates; Emma is confirmed secondary contact and has no PGP key
+   yet. Confirm emergency-revocation and backup-contact responsibilities.
+   Sean's existing public PGP key is included; confirm its use for the review
+   challenge and obtain Emma's public PGP key.
+3. Production keys will be backed up. Document signing-key custody, access
+   controls, protected backup storage,
    recovery, rotation and compromise response. Confirm the rationale for
    the leaf certificate's ten-year lifetime and module-signing key lifecycle.
 4. Freeze one Fedora shipping cohort: kernel, module certificate, bootloader,

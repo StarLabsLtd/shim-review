@@ -26,10 +26,10 @@ Pantheon. Normal installation and an optional DAVE profile.
 
 ### What's the justification that this really does need to be signed for the whole world to be able to boot it?
 
-Vale ships its own signed kernel and systemd-boot. Existing Star Labs laptops
-without the Vale certificate need a trusted shim to boot without enrolling a
-new key. Worldwide deployment justification beyond firmware we control remains
-to be confirmed before submission.
+Vale is intended for both Star Labs and non-Star-Labs PCs. It ships its own
+signed kernel and systemd-boot. Firmware on third-party PCs does not normally
+trust the Vale certificate, so a Microsoft-signed shim is needed to boot with
+Secure Boot enabled without requiring users to enroll a new firmware key.
 
 ### Why are you unable to reuse shim from another distro that is already signed?
 
@@ -39,12 +39,14 @@ Vale signs its bootloader and UKIs with the Vale certificate. Another distributi
 
 Sean Rhodes, Star Labs, sean@starlabs.systems. Public PGP fingerprint:
 40BCEEFFAC908E3B5F37399D57A9369D52843D8C (sean-rhodes.asc).
-Security-update responsibilities and use of this key for review correspondence
-remain to be confirmed.
+Sean owns security updates. Use of this key for review correspondence and
+emergency-revocation responsibilities remain to be confirmed.
 
 ### Who is the secondary contact for security updates, etc.?
 
-Emma Marsden, Star Labs, emma@starlabs.systems. Public PGP key and responsibilities pending confirmation.
+Emma Marsden, Star Labs, emma@starlabs.systems, confirmed secondary contact.
+She does not yet have a PGP key. A public key and her backup responsibilities
+remain required for the review process.
 
 ### Were these binaries created from the 16.1 shim release tar?
 
@@ -149,7 +151,10 @@ e0fa2d72123cd218ac25c1d46ea991ffe7f1cea7cbe597b87a04dd28cc4df7c7
 
 ### How do you manage and protect the keys used in your shim?
 
-The Vale private Secure Boot key is outside the repository and build contexts; only its public DER is embedded. Production custody, recovery, rotation and revocation responsibilities remain to be confirmed.
+The Vale private Secure Boot key is outside the repository and build contexts;
+only its public DER is embedded. Production keys will be backed up. The signing
+and backup access controls, storage protection, recovery, rotation and
+revocation responsibilities remain to be documented.
 
 ### Do you use EV certificates as embedded certificates in the shim?
 
