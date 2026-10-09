@@ -1,9 +1,9 @@
 # Vale shim signing application — local draft
 
-Not submitted. Contact, EV certificate and Microsoft account, key custody and final boot-stack fields remain open.
-
-The tested kernel below is vale1. The next candidate uses vale2; its TPM tests
-do not replace the signed/unsigned-module and complete boot-chain checks.
+Not submitted. Fedora boot-stack evidence, contact responsibilities, key custody
+and public source references remain open. See PREPARATION.md for the release
+baseline and outstanding answers. Historical Ubuntu tests below do not qualify
+the Fedora release.
 
 ### What organization or people are asking to have this signed?
 
@@ -14,11 +14,15 @@ Star Labs Online Limited (Star Labs) — https://starlabs.systems
 Star Labs Online Limited, England and Wales, company 10602146.
 [Companies House register](https://find-and-update.company-information.service.gov.uk/company/10602146),
 [Star Labs contact details](https://starlabs.systems/pages/contact-us).
-EV certificate issuer/subject remain pending.
+Partner Center Hardware enrollment is approved for seller 96389630.
+The active Certum EV code-signing certificate is issued to Star Labs Online
+Limited (company 10602146), by Certum Extended Validation Code Signing 2021 CA.
+Its SHA-1 thumbprint is 0623917D5780EC28A1E21582CA5C5C5CFA71E2C2.
 
 ### What product or service is this for?
 
-Vale, the Star Labs immutable Linux desktop, based on Ubuntu 26.04 and elementary Pantheon. Normal installation and an optional DAVE profile.
+Vale, the Star Labs immutable Linux desktop, based on Fedora 44 and elementary
+Pantheon. Normal installation and an optional DAVE profile.
 
 ### What's the justification that this really does need to be signed for the whole world to be able to boot it?
 
@@ -33,7 +37,10 @@ Vale signs its bootloader and UKIs with the Vale certificate. Another distributi
 
 ### Who is the primary contact for security updates, etc.?
 
-Sean Rhodes, Star Labs, sean@starlabs.systems. Public PGP key and responsibilities pending confirmation.
+Sean Rhodes, Star Labs, sean@starlabs.systems. Public PGP fingerprint:
+40BCEEFFAC908E3B5F37399D57A9369D52843D8C (sean-rhodes.asc).
+Security-update responsibilities and use of this key for review correspondence
+remain to be confirmed.
 
 ### Who is the secondary contact for security updates, etc.?
 
@@ -53,7 +60,10 @@ No shim source patches. The Dockerfile supplies the Vale certificate and SBAT, e
 
 ### Do you have the NX bit set in your shim? If so, is your entire boot stack NX-compatible and what testing have you done to ensure such compatibility?
 
-Yes. NX compatibility is set in shim and the tested downstream stack. Enforcing OVMF reached the installer and installed Normal Pantheon session. Unsigned next loaders, direct bootloader bypass and modified UKIs were rejected. See VALIDATION.md. Final rebuilt SBAT-stack acceptance is pending.
+Yes for shim. Historical Ubuntu-stack tests in enforcing OVMF reached the
+installer and installed Normal Pantheon session and rejected unsigned next
+loaders, direct bootloader bypass and modified UKIs. See VALIDATION.md.
+The complete Fedora shipping stack still needs NX inspection and acceptance tests.
 
 ### What exact implementation of Secure Boot in GRUB2 do you have? (Either Upstream GRUB2 shim_lock verifier or Downstream RHEL/Fedora/Debian/Canonical-like implementation)
 
@@ -77,7 +87,9 @@ The supported chain uses systemd-boot, not GRUB2.
 
 ### If your boot chain of trust includes a Linux kernel:
 
-Linux 7.2.8-vale1; source/config evidence is being prepared for publication.
+The inspected integration baseline pins Linux 7.2.8-vale2. Final Fedora RPM,
+source/config references and corresponding runtime evidence remain to be frozen.
+The vale1 checks below are historical evidence only.
 
 ### Is upstream commit [1957a85b0032a81e6482ca4aab883643b8dae06e "efi: Restrict efivar_ssdt_load when the kernel is locked down"](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=1957a85b0032a81e6482ca4aab883643b8dae06e) applied?
 
@@ -142,7 +154,8 @@ The Vale private Secure Boot key is outside the repository and build contexts; o
 ### Do you use EV certificates as embedded certificates in the shim?
 
 No. The embedded Vale certificate is separate. An EV certificate for signing
-Microsoft submission CABs has not yet been obtained.
+Microsoft submission CABs is registered and active in Partner Center. It is not
+the Vale Secure Boot certificate embedded in shim.
 
 ### Are you embedding a CA certificate in your shim?
 
@@ -150,11 +163,14 @@ No. It is a dedicated code-signing leaf (CA:FALSE). The ten-year validity and ro
 
 ### Do you add a vendor-specific SBAT entry to the SBAT section in each binary that supports SBAT metadata ( GRUB2, fwupd, fwupdate, systemd-boot, systemd-stub, shim + all child shim binaries )?
 
-shim.vale is present in all three shim binaries. Rebuilt systemd-boot/stub retain their generic and Ubuntu rows and add distinct Vale rows. UKIs also add uki.vale. Exact final stack listings and native acceptance are pending.
+The shim binaries contain shim.vale; exact rows are recorded in SBAT.md.
+Final Fedora systemd-boot, systemd-stub, UKIs and any EFI updater require
+separate listings and tests. Historical Ubuntu rows are not Fedora evidence.
 
 ### Please provide the exact SBAT entries for all binaries you are booting directly through shim.
 
-shim.vale is present in all three shim binaries. Rebuilt systemd-boot/stub retain their generic and Ubuntu rows and add distinct Vale rows. UKIs also add uki.vale. Exact final stack listings and native acceptance are pending.
+See SBAT.md for the shim binary listings. Final Fedora next-loader and companion
+listings remain open.
 
 ### If shim is loading GRUB2 bootloader, which modules are built into your signed GRUB2 image?
 
@@ -166,7 +182,9 @@ Not applicable: x86-64 only.
 
 ### What is the origin and full version number of your bootloader (GRUB2 or systemd-boot or other)?
 
-Ubuntu systemd 259.5-0ubuntu3.4 with Vale sleep-backend and additive SBAT patches: 259.5-0ubuntu3.4+vale2.
+The inspected Fedora image tool lock identifies systemd 259.5-2.vale.fc44.
+The final bootloader RPM, executable hash, source references and SBAT listing
+must be matched to the release before submission.
 
 ### If your shim launches any other components apart from your bootloader, please provide further details on what is launched.
 
@@ -182,7 +200,8 @@ Firmware verifies shim; shim verifies Vale-signed systemd-boot; systemd-boot ver
 
 ### Does your shim load any loaders that support loading unsigned kernels (e.g. certain GRUB2 configurations)?
 
-The tested supported chain rejects unsigned or modified UKIs. See VALIDATION.md.
+The historical Ubuntu chain rejected unsigned or modified UKIs. See
+VALIDATION.md. Equivalent tests against the final Fedora chain remain open.
 
 ### What kernel are you using? Which patches and configuration does it include to enforce Secure Boot?
 
@@ -197,12 +216,11 @@ Pending Sean’s confirmation. No contribution is claimed.
 
 ### Add any additional information you think we may need to validate this shim signing application.
 
-Local draft only. Microsoft signing, final boot-stack acceptance, public
-source/tag, contacts, key custody and hardware testing remain pending. DAVE
-will use standard systemd-tpm2 LUKS2 tokens beneath a firmware-provisioned SRK;
-that firmware contract and complete OS integration are not yet accepted.
+Local draft only. Hardware enrollment is approved; no review issue or Microsoft
+submission has been made. Final Fedora boot-stack acceptance, public source/tag,
+contact responsibilities, key custody and DAVE-specific acceptance remain open.
 
-## Next kernel (not the module-tested kernel above)
+## Historical Ubuntu candidate (not the Fedora shipping kernel)
 
 The next candidate package is
 `linux-image-7.2.8-vale2_7.2.8-vale2_amd64.deb`, SHA-256

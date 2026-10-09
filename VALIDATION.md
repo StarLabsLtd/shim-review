@@ -1,5 +1,8 @@
 # Vale shim boot-chain validation
 
+These are historical Ubuntu checks, not Fedora 44 release acceptance. The
+current preparation scope and unresolved Fedora evidence are in PREPARATION.md.
+
 On 1 October 2026, unmodified shim 16.1 was built twice with the permanent Vale
 public certificate. All three EFI binaries reproduced byte-for-byte. The source
 archive's SHA-256 matches upstream; its detached signature verifies against
@@ -48,8 +51,8 @@ they do not repeat DAVE commissioning or sealed-S4 validation through shim.
   the component fixtures below are not the final release.
 - Integrate the eventual Microsoft-signed shim into installer, installed ESP and
   update handling; do not ship the temporary QEMU-signed copy.
-- Confirm company registration, primary and secondary security contacts and
-  their public PGP keys, EV certificate and Microsoft Partner Center access.
+- Company registration, EV registration and Hardware access are confirmed.
+  Confirm security-contact responsibilities and the secondary public PGP key.
 - Confirm signing-key custody and security-update/revocation responsibilities.
 - Publish the frozen review repository/tag and submit a shim-review issue, then
   submit the accepted binary to Microsoft. Nothing has been submitted yet.
