@@ -1,80 +1,84 @@
-# Vale shim boot-chain validation
+# Frozen Fedora shim-chain evidence
 
-These are historical Ubuntu checks, not Fedora 44 release acceptance. The
-current preparation scope and unresolved Fedora evidence are in PREPARATION.md.
+The Linux lane's retained 10 October 2026 evidence qualifies the reconstructed
+enforcing-OVMF chain for source `80596e30435c4d1845bb52319aeb50de2907da0f`,
+image `202610061000`, kernel `7.2.8-vale3` and systemd `259.5-2.vale.fc44`.
+This packet reconciliation did not rerun tests. Supplied commands/results are
+summarized in fedora/runtime-report.txt and fedora/module-runtime.md; original
+raw receipts remain in the sibling shim-fedora-20261010 validation directory.
 
-On 1 October 2026, unmodified shim 16.1 was built twice with the permanent Vale
-public certificate. All three EFI binaries reproduced byte-for-byte. The source
-archive's SHA-256 matches upstream; its detached signature verifies against
-Peter Jones's published signing subkey
-`02093E0D19DDE0F7DFFBB53C1FD3F540256A1372`.
+## Exact shim binding
 
-Shim SHA-256:
+Unsigned shim SHA-256:
 `e0fa2d72123cd218ac25c1d46ea991ffe7f1cea7cbe597b87a04dd28cc4df7c7`.
-Build recipe: the packet-root `Dockerfile`. The build embeds `shim.vale,1` SBAT and sets
-NX compatibility, with upstream's PE-layout checks enabled. Build logs, package versions, unsigned binaries and public certificate are
-in this packet.
+Temporarily signed test shim SHA-256:
+`676f9b7f09e4f19c9ff5976c7c767604b95eae3b17eb44d12e7276c7989025fb`.
+fedora/shim-body-binding.json proves all original bytes match except PE checksum
+bytes 216–219 and security-directory bytes 296–303; a 2032-byte certificate table
+was appended at original EOF 1025232. Normalized body SHA-256:
+`d6e2ac4ecc282bef63af4a00de1372afb96e4352150fd8bd3adbaa1adae47c2a`.
+The producer's signing commands and retained fixture hashes also bind that exact
+unsigned input to the tested file. This is not merely a same-certificate inference.
 
-## Runtime checks
+Firmware PK/KEK/db contained only the disposable test authority, certificate
+SHA-256 `76e67e1692c20c2cf75774f99472d89d5704982686af28e4187b5e8574318359`.
+No Vale/Microsoft certificate or allowed-image hash was enrolled. Vale downstream
+trust came from shim. No MOK enrollment or validation-disable operation occurred.
+The temporary firmware signature is not a Microsoft signature.
 
-Stock enforcing OVMF trusted only a temporary QEMU firmware signer, with no
-Microsoft or Vale certificate in firmware `db`. This signer represents the
-authority that will sign shim; it is not a Microsoft signature. Only shim was
-signed with it. Systemd-boot, MokManager and the unchanged H7 UKIs were signed
-with the permanent Vale key.
+## Observed results
 
-| Check | Result |
+| Case | Result |
 | --- | --- |
-| Firmware → shim → systemd-boot → installer UKI | Native installer menu reached |
-| Live and installed kernel enforcement | `7.2.8-vale1`, Secure Boot enabled, integrity lockdown |
-| Fresh Normal installation, then explicit shim boot entry | First-user setup and logged-in Pantheon reached without installer media; `/usr` read-only EROFS |
-| Direct Vale-signed bootloader, bypassing shim | Firmware rejected: Access Denied |
-| Shim followed by unsigned systemd-boot | Shim rejected: Security Violation |
-| Signed UKI with one byte altered in `.linux` | Rejected before Linux: Security violation |
+| Shim → signed systemd-boot → Normal installer UKI | Installer GUI reached |
+| Shim → signed systemd-boot → installed current UKI | Encrypted-root unlock, owner graphical login and Polkit authorization passed |
+| Shim → signed recovery dispatcher at default loader filename → installer UKI | Installer GUI reached |
+| Direct Vale-signed loader without shim | Firmware rejected |
+| Unsigned next loader | Shim rejected; absent MokManager did not bypass validation |
+| Unsigned UKI / signed UKI with one modified .linux byte | Rejected, with no older-UKI fallback in the fixture |
+| Unchanged signed loader / UKI under targeted generation-2 SBAT revocation | Rejected at the expected stage |
+| Configured and default next loader missing | No unauthenticated boot; direct Vale fallback rejected |
+| Original signed module | Loaded and unloaded |
+| Identical unsigned / valid untrusted-signed module payloads | Rejected with signature-specific kernel messages |
 
-Evidence is retained locally under repository-relative
-`out/shim-chain-validation/` and `.cache/vale-shim-*/`; it is not included
-in this packet or published.
-The test installation was `.cache/vale-shim-positive/target.qcow2`; its explicit
-EFI entry is `\EFI\vale\shimx64.efi`, with systemd-boot beside it. The installer
-fixture changed only H7's ESP, outside its authenticated data prefix. Original
-H7 still has SHA-256
-`c2507c423aab550c80c9da7c9592c6736b3c8981fb6306fd0e5119531162fc73`.
-The temporary VM disk and modified installer copy were retired after recording
-results to conserve space. The USB and staged release are unchanged. These are Normal boot-chain checks;
-they do not repeat DAVE commissioning or sealed-S4 validation through shim.
+Runtime recorded SecureBoot=1, SetupMode=0, integrity lockdown, sig_enforce=Y
+and SELinux enforcing. SBAT diagnostics are generic Security Violation:
+attribution comes from the controlled policy difference with unchanged signed
+inputs, not a claimed literal SBAT error. Module outcomes are process exits and
+messages, not syscall errno traces. Existing evidence audits verified all 304
+runtime-manifest entries; no mismatch was reported.
 
-## Before submission and shipping
+## Frozen artifact identities
 
-- Rebuild the final release with the reviewed additive Vale SBAT changes and
-  include its exact boot stack in the review request. Current H7 remains unchanged;
-  the component fixtures below are not the final release.
-- Integrate the eventual Microsoft-signed shim into installer, installed ESP and
-  update handling; do not ship the temporary QEMU-signed copy.
-- Company registration, EV registration and Hardware access are confirmed.
-  Confirm security-contact responsibilities and the secondary public PGP key.
-- Confirm signing-key custody and security-update/revocation responsibilities.
-- Publish the frozen review repository/tag and submit a shim-review issue, then
-  submit the accepted binary to Microsoft. Nothing has been submitted yet.
-- Test the returned Microsoft-signed binary and fresh DAVE commissioning on
-  hardware. Since 27 June 2026, new signatures require firmware to trust the
-  Microsoft UEFI CA 2023.
+| Component | SHA-256 |
+| --- | --- |
+| Original Fedora ISO | a430f999a2fcc93b9d7b12e4386c0cc7572e9cf46695388b7dade74b2763dd5f |
+| Installed signed systemd-boot | ba71acffa69d2712a0e5ba6771489f9d4363a08e5a06000f507e1df5b421dda6 |
+| Current installed Normal UKI | d0a0cc13655fad321e305afd6578002a9d9d52303a11db67055c0a95eda7698b |
+| Signed recovery dispatcher | f7188dbec3bbe42f9413c79f4435949b65fd179381b5f2ac9dd732c191df3879 |
+| Normal installer UKI | 2de7ae15c761c245f7453a75f004ed6fadcb5d1731b7c2140ffe16d89ac01677 |
+| Dave installer UKI, inventoried rather than commissioned | 435f55cd9d76e25dcf3415b8525320cda4746baee14346f787dfa2005ad27abb |
+| Current Dave update UKI, not the retained installed Dave image | f845a72571c04fdfd04e4f7ca3c93a84d55f3e16e0b02891da600fc730007294 |
+| Retained installed Normal 0825 UKI | 0b4522498039d27eeb5b428f33b265873ad4bf0aec18bda3553c976147e6b1ed |
+| Retained installed Dave 0825 UKI | f55dde8ad2e8b270b62b554bd261961292f62d397cbef781b43f5d93b0832469 |
 
-Requirements: [shim-review](https://github.com/rhboot/shim-review/blob/main/README.md)
-and [Microsoft file signing](https://learn.microsoft.com/en-us/windows-hardware/drivers/dashboard/file-signing-reqs).
+Complete inventory inspection found NX_COMPAT, valid Vale signatures and
+upstream/Fedora/Vale SBAT rows on the inspected EFI surfaces. Installed fallback
+BOOTX64 equals the installed systemd loader; the ISO's BOOTX64 is the recovery
+dispatcher. No other selectable EFI updater, shim, MokManager or fallback utility
+was on the original surfaces. Exact rows are in SBAT.md.
 
-## Additive SBAT follow-up
+## Limits and preserved history
 
-The `259.5-0ubuntu3.4+vale2` package adds two Vale SBAT rows without replacing
-Ubuntu or upstream rows. Native ukify adds `uki.vale`, retaining generic `uki`.
-The fixture selected the explicit installer stub. Emitted bootloader/stub
-and signed installer rows were inspected.
-The rebuilt chain reached the H7 installer in enforcing stock OVMF with Secure
-Boot enabled and integrity lockdown. Multiprofile UKI fixture signatures verify
-under the existing separate runtime/initrd authorities. These are component
-fixtures using H7 content, not a new release ISO or USB update.
+The original ISO does not ship shim: these are reconstructed fixture chains.
+Original ISO/disk/paired firmware and TPM state were preserved. A future
+Microsoft-returned binary needs separate exact-artifact qualification, plus
+installer/installed ESP and update integration. The frozen vale3 predates later
+authenticated-S4 size and worker-thaw fixes; full DAVE/S4 acceptance is not claimed.
+Module-key lifecycle remains a separate owner-policy question. These limits do
+not require repeating passed cases or waiting on unrelated newer cohorts.
 
-The earlier PCR11 and recovery-metadata export fixtures are retained locally
-in `out/vale-sbat-validation/` (repository-relative, not included in this
-packet or published). They do not establish acceptance of the current
-firmware-provisioned SRK/systemd-tpm2 LUKS2 design or the final shipping stack.
+The October 1 Ubuntu validation is retained unchanged in
+HISTORICAL-UBUNTU-VALIDATION.md; it is not Fedora evidence. Build-first.log,
+build-second.log and reproducibility.txt remain the original shim build evidence.
+Publication of the complete public source/raw-evidence set is still pending.

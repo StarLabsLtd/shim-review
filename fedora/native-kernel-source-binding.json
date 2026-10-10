@@ -1,0 +1,40 @@
+{
+  "native_build_source": "c98ff436f79a8deed4bce090041805a54b1fccd3",
+  "supplied_authorities": [
+    "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/NATIVE-BUILD-INPUTS.json",
+    "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/NATIVE-RPM-PASS.json"
+  ],
+  "public_inputs": [
+    {
+      "path": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-rpms/kernel-vale/SOURCES/series",
+      "bytes": 1860,
+      "sha256": "55c4894567c3c84d15c5ebee517d745406bb93c576efda57b433a552e670be86"
+    },
+    {
+      "path": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-rpms/kernel-vale/SOURCES/vale.fragment",
+      "bytes": 584,
+      "sha256": "74e2184da1cc1d1b985bb7180a56fd1630655499167ca1674e9416bb102230f5"
+    },
+    {
+      "path": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-rpms/kernel-vale/SOURCES/shipping.fragment",
+      "bytes": 139,
+      "sha256": "6a8917e1f2eb138b40d5cb27ef959f5c67292b7b38cab7414f2ec3f42d125f2c"
+    },
+    {
+      "path": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-rpms/kernel-vale/SOURCES/kernel-x86_64-fedora.config",
+      "bytes": 266727,
+      "sha256": "cd11b96fabf3cbdaf1063eff6b66fb012edba411762ad994e3eed6236911ce18"
+    },
+    {
+      "path": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-rpms/kernel-vale/SOURCES/vale-kernel-patches.tar.gz",
+      "bytes": 48098,
+      "sha256": "4e2f2e40f270ae850d1b09620f61bfed0368677b3c1dc11744afa46b396435fe"
+    },
+    {
+      "path": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-rpms/kernel-vale/SPECS/kernel-vale.spec",
+      "bytes": 2890,
+      "sha256": "d5c8c24634c24269d945fefa9a83d310d0c9f6009018c27ab456041c3d4510db"
+    }
+  ],
+  "scope": "Public build inputs only; no private signing material inspected."
+}

@@ -1,0 +1,33 @@
+{
+  "unsigned_path": "/home/sean/Documents/development/vale/validation/shim-submission-20261009/packet/shimx64.efi",
+  "unsigned_sha256": "e0fa2d72123cd218ac25c1d46ea991ffe7f1cea7cbe597b87a04dd28cc4df7c7",
+  "signed_test_shim_path": "/home/sean/Documents/development/vale/validation/shim-fedora-20261010/runtime/shimx64.efi",
+  "signed_sha256": "676f9b7f09e4f19c9ff5976c7c767604b95eae3b17eb44d12e7276c7989025fb",
+  "unsigned_bytes": 1025232,
+  "signed_bytes": 1027264,
+  "checksum_offset": 216,
+  "security_directory_offset": 296,
+  "unsigned_security_directory": [
+    0,
+    0
+  ],
+  "signed_security_directory": [
+    1025232,
+    2032
+  ],
+  "different_prefix_offsets": [
+    216,
+    217,
+    296,
+    297,
+    298,
+    300,
+    301
+  ],
+  "all_prefix_differences_only_checksum_and_certificate_directory": true,
+  "body_equal_after_excluding_signing_header_fields": true,
+  "body_sha256": "d6e2ac4ecc282bef63af4a00de1372afb96e4352150fd8bd3adbaa1adae47c2a",
+  "certificate_table_starts_at_unsigned_end": true,
+  "certificate_table_ends_at_signed_end": true,
+  "receipt_scope": "Read-only PE body/input provenance analysis, not a new runtime/signature test; no source/packet mutation. Exact original candidate body retained in test-signed shim; only PE checksum/security-directory changed and certificate table appended. Temporary firmware signer, not Microsoft."
+}

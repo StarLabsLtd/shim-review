@@ -1,151 +1,63 @@
-# Historical vale1 kernel evidence for the local shim draft
+# Frozen Fedora kernel and module trust
 
-Inspected 2026-10-01 in `/home/sean/Documents/starlabs-atomic`. No builds,
-module loading, VM starts, TPM/device access or private-key reads. Public
-certificate extraction and signature verification used memory only.
+Kernel: `7.2.8-vale3`, RPM `kernel-vale-7.2.8-3.vale.fc44.x86_64` SHA-256
+`e6c7955c8b7a0e4e94c9fe466c67cdcc0e03566eba0a0381eed87107e97b58a1`.
+Image source is `80596e30435c4d1845bb52319aeb50de2907da0f`; native kernel
+producer source is `c98ff436f79a8deed4bce090041805a54b1fccd3`.
+fedora/native-kernel-source-binding.json identifies the actual producer inputs;
+fedora/kernel-source-binding.json binds all 24 patch bytes to the image source.
+These are different provenance roles, not interchangeable source commits.
 
-The historical inspected README's vale1 source/config claims are supported. Submission runtime and
-public-source gates remain open. This evidence does not establish DAVE handoff
-or hardware readiness.
+## Included public inputs
 
-## Actual packaged configuration and enforcement
+- fedora/kernel-config is the exact RPM's final configuration, SHA-256
+  `cf562eb28f2c448fea09b1f2e39922336fef06f589db923e4b90002bdb671a00`.
+- fedora/kernel-series identifies the 24-patch queue; its archive
+  fedora/vale-kernel-patches.tar.gz has SHA-256
+  `4e2f2e40f270ae850d1b09620f61bfed0368677b3c1dc11744afa46b396435fe`.
+- fedora/source-freeze.json retains the image lock, kernel spec/fragments/series,
+  systemd spec/SBAT patch and recovery-dispatch/image recipes as inspected.
+  It includes other lane heads for context; those heads are not this image.
+- Linux source archive is https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.8.tar.xz,
+  SHA-256 `65a07d5d0d88dac963b190f087ccd1498622cb742ccfa1b4e46f8110f08832a0`.
 
-Artifact: `out/debs/kernel/linux-image-7.2.8-vale1_7.2.8-vale1_amd64.deb`.
-At the time of inspection, its `./boot/config-7.2.8-vale1` was byte-identical
-to the then-current build configuration. That build directory now contains
-vale2; current source/config files must not be described as the old artifacts.
+Complete public source references still need final publication. Existing source
+inspection confirms the EFI SSDT, ACPI configfs and prior-KGDB lockdown checks
+asked about by shim-review. Forced integrity lockdown is enabled early;
+module signing, SHA-512/RSA, strict devmem and kexec verification are enabled.
+CONFIG_MODULE_SIG_FORCE is unset. Runtime sig_enforce=Y is established by the
+guest evidence; the audit attributes enablement to IMA Secure Boot architecture
+policy. Lockdown is forced independently of firmware Secure Boot state.
 
-| Configuration | Exact config lines |
-| --- | --- |
-| `CONFIG_MODULE_SIG=y`; **`CONFIG_MODULE_SIG_FORCE` unset** | 1093–1094 |
-| `CONFIG_MODULE_SIG_ALL=y`, SHA-512 signatures | 1095–1102 |
-| `CONFIG_MODULE_SIG_KEY="certs/signing_key.pem"`, RSA | 12561–12562 |
-| Early lockdown LSM; forced integrity lockdown | 12222–12225 |
-| EFI SSDT overlays enabled | 2591 |
-| ACPI table upgrade enabled; configfs built as a module | 696, 727 |
-| KGDB/KDB enabled | 12861–12866 |
+## Exact running kernel and three controls
 
-Unsigned/untrusted-module enforcement comes from lockdown, not
-`CONFIG_MODULE_SIG_FORCE=y`: `kernel/module/signing.c:99–124` rejects fatal
-signature errors and calls `security_locked_down(LOCKDOWN_MODULE_SIGNATURE)`
-for unsigned/unavailable-key cases. `security/lockdown/lockdown.c:84–92`
-forces integrity lockdown; lines 164–170 register it early.
+Runtime kernel ELF build ID `1cc3bbb841357db5d343b2e094bc59a27c34d4a7` matches
+the exact RPM and current installed UKI. Recovered module public certificate
+fedora/vale3-module-public.der has SHA-256
+`169b9ad28e02eefa597b11f276c68bd2c8ea97024cb7cea52284c95023e8973d`.
+Its SKI is `8d9f7b2d135274b2b4b2076b2d043e3d200bf9b9`; its serial is
+`5efcfa981a570885f5b8b9c95aecdbf77c706bdc`. Runtime key descriptions use SKI,
+whereas the module signature identifies issuer/serial; there is no discrepancy.
 
-The configuration therefore imposes integrity lockdown independently of a
-Secure Boot enablement test. Source behavior must not be presented as an
-actual unsigned-module runtime rejection test.
+The same dummy module payload was exercised three ways: original signed
+loaded/unloaded successfully; unsigned and valid untrusted-signed variants
+were rejected and stayed absent. Crypto verification established that the
+untrusted fixture was validly signed, not malformed. Kernel messages explicitly
+identified unsigned/unavailable-key rejection. These are insmod exit statuses
+and messages, not traced syscall errno values. keyctl was unavailable; a full
+per-keyring traversal is not claimed. See fedora/module-runtime.md.
 
-## Actual module-signing identity
+## Lifecycle and scope
 
-The public certificate embedded in the **packaged kernel** has:
+fedora/module-key-build-lifecycle.json records GENKEY and ordinary rmbuild
+removal of the generated-key build tree. It does not establish secure erasure,
+absence of backups/other copies or an approved production custody policy.
+Autogeneration alone cannot justify an ephemeral-key claim. Cross-build module
+acceptance remains possible if a trusted signer and compatible ABI are reused;
+the owner must settle the intended signing-key lifecycle.
 
-- Subject and issuer: `CN=Build time autogenerated kernel key`.
-- Serial: `7D3E1C75E879F474448981D36C636F3459D97EF6`.
-- DER SHA256/fingerprint: `cff069aa0c23acc80cc4d0f796904415163c07152b360c263f7a1726c0ebf819`.
-- Validity: 2026-09-30 19:57:01 UTC through 2126-09-06 19:57:01 UTC.
-
-Extracted in memory from `./boot/vmlinuz-7.2.8-vale1`: decode its Zstandard
-payload using the bzImage payload offset/length, then locate the valid DER
-certificate at offset `0x33af0e8` in the decompressed ELF. That ELF's SHA256 is
-`07d9bed0addce2a5637d00adb476dc791b730ea77848a87dc34b8c0fea24170e`.
-No public certificate file was created by this review.
-
-The packaged sample
-`./lib/modules/7.2.8-vale1/kernel/arch/x86/crypto/aegis128-aesni.ko` names the
-same issuer/serial in its appended CMS signature. Its detached SHA-512/RSA
-signature was successfully verified against the kernel's embedded certificate
-using native OpenSSL CMS. This is a sampled artifact check, not an audit of
-every module or a runtime load test.
-
-This is the autogenerated kernel-build identity, not Vale's permanent Secure
-Boot signing identity. `kernel/scripts/build-debian-kernel.sh:39–54` recreates
-the source/config; lines 119–123 reuse a valid cached kernel/module package.
-`out/kernel-generation-build.log:1449` records key generation; line 1475
-records certificate generation. `out/final-H7-permanent-signing-build.log:147–148`
-records reuse of cache `1da2af8c848f3e56a95e702e0c87b90d2dc72ea57e5821d9036fbc4aa2347fb0`
-and the package hash below. Cache reuse retains the existing build identity;
-it does not generate a new module key for each ISO. Private-key destruction or
-absence of other copies was not established.
-
-## Lockdown checks present in source
-
-Source/config paths, line numbers and hashes describe the 1 October vale1
-inspection, not current working-tree contents. Paths below were relative to
-`kernel/work/linux-7.2.8-vale/` at that inspection.
-
-| Check | Exact source location |
-| --- | --- |
-| EFI SSDT variable loading restriction | `drivers/firmware/efi/efi.c:253–269`, lockdown check at 258 |
-| ACPI configfs table write restriction | `drivers/acpi/acpi_configfs.c:24–32`, lockdown check at 29 |
-| KGDB kernel-write restriction before GDB stub | `kernel/debug/debug_core.c:743–767`, lockdown check at 757 |
-| KDB write permissions removed on lockdown | `kernel/debug/kdb/kdb_main.c:171–199`, write check at 184 |
-
-The corresponding upstream changes are
-[EFI SSDT 1957a85](https://github.com/torvalds/linux/commit/1957a85b0032a81e6482ca4aab883643b8dae06e),
-[ACPI configfs 75b0cea](https://github.com/torvalds/linux/commit/75b0cea7bf307f362057cc778efe89af4c615354),
-and [KGDB eadb2f4](https://github.com/torvalds/linux/commit/eadb2f47a3ced5c64b23b90fd2a3463f63726066).
-The local checks correspond to these changes; this tarball-source inspection
-does not claim a Git ancestry verification.
-
-## Full SHA256 evidence pins
-
-All repository paths are relative to `/home/sean/Documents/starlabs-atomic`.
-
-| Path or archive member | SHA256 |
-| --- | --- |
-| `out/debs/kernel/linux-image-7.2.8-vale1_7.2.8-vale1_amd64.deb` | `7d65f67b7ff6689ad92c1a88f3e52e7f8bbdc846293e8214e7f9e45893487101` |
-| Package member `./boot/config-7.2.8-vale1`; matched at inspection: `kernel/work/linux-7.2.8-vale/.config` | `5d2080eb68e5b6fb5e266a15eaaec5ba51148c1efa5e3b5ea9ae6c40502bd73f` |
-| Package member `./boot/vmlinuz-7.2.8-vale1` | `42270726a4644655b6f32a2619b71bfde3d3354075cf912b79148bb0de0940c9` |
-| Package member `./lib/modules/7.2.8-vale1/kernel/arch/x86/crypto/aegis128-aesni.ko` | `ad5aa437674e8b9dc3c2ad27d28fbf5fee1f3b51138f372743e71d702e550984` |
-| `kernel/upstream.lock` | `348f5ba3a31a4ca9abd709307fdd240ff7ab24575d9896463e871be1db408727` |
-| `kernel/config/vale.fragment` | `b9b4f67a127f155730fa3cdd229ac78989aa31c60918b0b9b6d3a92bcf818cf5` |
-| `kernel/scripts/build-debian-kernel.sh` | `7a34a2f1be0263a1c6c14cfb5f28f4b8f1c22b9d6485cbd3cc5102402bf46820` |
-| `kernel/work/linux-7.2.8-vale/drivers/firmware/efi/efi.c` | `c98381de42ef0406dc1643062f8059e92f7347a9fa0de41dfa63adda71cf5529` |
-| `kernel/work/linux-7.2.8-vale/drivers/acpi/acpi_configfs.c` | `484506a79421e9de1c4ef29ce2e5612e1ec34c6bb4636be65974c0910097d4cd` |
-| `kernel/work/linux-7.2.8-vale/kernel/debug/debug_core.c` | `87211fb2afb1d4dd6b9dc2080875ee2ab75b04532cee8b764874aafe02d41114` |
-| `kernel/work/linux-7.2.8-vale/kernel/debug/kdb/kdb_main.c` | `85fa06477578719b6f363e528f69ccbc2eb03a681a95cafdfc7dc36d8da1f5df` |
-| `kernel/work/linux-7.2.8-vale/kernel/module/signing.c` | `96c807347e4e60bbb39d91b7ad611279b75aab2d23b967459eaaa7c56a796735` |
-| `kernel/work/linux-7.2.8-vale/security/lockdown/lockdown.c` | `fec032ce5ae3a85f66db28a4454a819d70abfe5cbbecfe4f1a115276fc04e00a` |
-| Inspected draft `out/shim-submission/README.md` | `76dbd6e786272d7c035d633a08def8ae43e90d2cbb4cd7e9691294f7ef2986a6` |
-
-`kernel/upstream.lock` pins Linux 7.2.8 source SHA256
-`65a07d5d0d88dac963b190f087ccd1498622cb742ccfa1b4e46f8110f08832a0`
-and Ubuntu configuration-package SHA256
-`fd207ceefc3b1d817439d1ebf1013d00689c60fa90a04f7b8b4ef39d3f01ac3f`.
-These are declared input pins; this review did not download or rebuild them.
-
-## Later isolated runtime evidence
-
-The exact vale1 package identified above passed the module controls in enforcing OVMF:
-SecureBoot=1, SetupMode=0, live integrity lockdown. An unsigned `dummy.ko`
-returns EKEYREJECTED (129) and remains absent; the unchanged signed ELF loads.
-The unsigned control differs only by removal of the appended signature.
-Author evidence and an independent retained-evidence review match kernel,
-module, authority, launch and guest-result hashes.
-
-Evidence: `../shim-module-runtime/REPORT.txt` and `manifest.json`; independent
-review: `../dvh1-memory-review-sagan/final-preflight-20261001T221552Z/shim-retained-review.txt`.
-This uses a temporary firmware-test CA and shim's configured second-stage
-filename holding a diagnostic UKI, rather than the final systemd-boot chain.
-Kernel configuration forces integrity lockdown, so Secure Boot is not proved
-to be its sole trigger. No production key, full installer or hardware was tested.
-The earlier read-only inspection and draft are preserved under
-`../shim-submission-history/pre-module-runtime-20261001/`.
-
-## Required submission evidence still open
-
-- Public frozen kernel source, patch series, complete configuration and public
-  module certificate/artifact references. Local source presence is not public
-  submission availability.
-- Final supported boot-stack acceptance. The diagnostic kernel/module controls
-  above do not replace the complete shipping-chain inventory and validation.
-- A clear kernel-build-key retention/destruction statement. Autogeneration and
-  cache behavior alone do not establish destruction.
-- Keep SSDT/configfs/KGDB conclusions labeled source/config inspection, not
-  tested runtime rejection. No firmware handoff or hardware policy acceptance
-  follows from these checks.
-
-The original read-only reviewer made no manifest edits. The later runtime
-checkpoint updates the local draft and checksums; nothing was submitted.
-
-These historical results do not qualify vale2 or a rebuilt final ISO.
+The exact vale3 S4 queue does not contain the later authenticated-size guard
+and worker-thaw fixes. That source limitation and full DAVE/S4 release acceptance
+are separate from the recorded boot/module results. No private signing material
+was inspected or added to this packet. Historical Ubuntu vale1 evidence remains
+unchanged in HISTORICAL-UBUNTU-KERNEL.md.

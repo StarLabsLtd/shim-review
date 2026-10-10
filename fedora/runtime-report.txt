@@ -1,0 +1,60 @@
+Local Fedora shim runtime — completed 2026-10-10
+
+11 owned serial VM runs: three positive chain paths (four positive boots,
+including the installed owner-console follow-up) and seven refusal cases.
+Three actual module load controls. All expected boot/module outcomes observed.
+No VM remains running. CASE-RESULTS.json gives every verdict, exact inputs,
+raw receipt paths/hashes, preserved-original checks and scratch cleanup.
+
+Positive paths
+- live-positive: shim -> exact signed systemd-boot -> exact live Normal UKI;
+  actual Fedora installer GUI, Linux7.2.8-vale3.
+- installed-positive / installed-owner: shim -> loaderba71ac... -> installed
+  UKId0a0cc... current1000 only; normal encrypted-root unlock, owner greeter,
+  graphical owner login and normal Polkit authorization. Runtime hashes match.
+- live-dispatch: shim -> exact signed dispatcherf7188d... placed at shim's
+  compiled systemd-bootx64.efi filename -> exact EFI/Vale/Normal.efi;
+  actual installer GUI. Original ISO remains readonly media payload.
+
+Refusal cases
+- direct-loader: exact Vale-signed loader without shim rejected by firmware.
+- unsigned-loader: shim SecurityViolation; missing mmx64 subsequently fails.
+- unsigned-uki / tampered-uki: exact current1000 selection refused; no older UKI
+  fallback. Tampered case changes one .linux byte, retaining the signature.
+- sbat-loader / sbat-uki: unchanged signed components refused at expected stages
+  with respective systemd-boot.vale,2 / uki.vale,2 thresholds preserved pre/post.
+  Diagnostics are generic SecurityViolation; SBAT attribution is the controlled
+  variable difference against allowed positives, not a literal SBAT error string.
+- missing-loader: configured/default next-loader both absent; firmware's direct
+  Vale fallback rejected; ends with no bootable option.
+
+Kernel controls and trust
+Runtime SecureBoot=1, SetupMode=0, integrity lockdown, sig_enforce=Y and SELinux
+Enforcing. Signed dummy loaded/unloaded rc0. Identical unsigned and untrusted-
+signed payloads failed rc1 with explicit kernel unsigned/unavailable-key
+rejection; both stayed absent. No relabel or policy change. Private files cleaned,
+data mount unmounted, final dummy absent. Keyctl absent; public /proc/keys,
+X509 dmesg and kernel notes retained. Runtime build-ID1cc3bbb841357db5d343b2e094bc59a27c34d4a7
+and the built-in certificate binding was reconciled against the certificate metadata in KERNEL-EVIDENCE.md.
+
+All 12 decoded template/post-run stores have exactly one temporary certificate
+in PK/KEK/db, fingerprint76e67e1692c20c2cf75774f99472d89d5704982686af28e4187b5e8574318359.
+No Vale/MS db trust or image hashes enrolled. Shim's embedded Vale certificate
+is distinct downstream trust. No MOK enrollment/validation-disable operation.
+
+Preservation and execution notes
+Original ISO, base qcow2, paired original VARS and TPM full hashes still match;
+retained-{iso,disk,paired}-after.txt. All case final VARS/TPM, logs, screenshots,
+commands and input hashes retained. Host /tmp scratch stayed bounded; aggregate
+2GiB guard actually blocked one preparation until completed FATs were retired.
+First VT login failed; same unchanged credentials worked graphically. First
+serial collector timed out despite retaining its complete marker; framing fixed
+before later commands. fixture-execution-issues.txt preserves these observations.
+No source/package/pin/production-key/hardware/remote/foreign-VM changes.
+
+Remaining qualification gates
+Current ISO does not contain shim: this is a reconstructed fixture chain.
+Any future Microsoft-returned binary needs its own exact-artifact qualification.
+Original vale3 lacks the separately identified S4 source fixes; S4 lifecycle and
+module-key custody/rotation policy are not established by these boot/module tests.
+No full-release readiness claim.

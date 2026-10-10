@@ -1,0 +1,20 @@
+{
+  "source_log": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-build.log",
+  "evidence": [
+    {
+      "line": 1582,
+      "text": "  GENKEY  certs/signing_key.pem"
+    },
+    {
+      "line": 57876,
+      "text": "Executing(rmbuild): /bin/sh -e /var/tmp/rpm-tmp.vOdcnv"
+    },
+    {
+      "line": 57881,
+      "text": "+ rm -rf /build/BUILD/kernel-vale-7.2.8-build"
+    }
+  ],
+  "recipe": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-rpms/kernel-vale/SPECS/kernel-vale.spec",
+  "private_key_read": false,
+  "private_key_contents_searched": false
+}

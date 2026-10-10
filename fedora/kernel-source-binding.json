@@ -1,0 +1,113 @@
+{
+  "source_commit": "80596e30435c4d1845bb52319aeb50de2907da0f",
+  "patches": {
+    "patches/cfr-base/0001-firmware-Move-firmware-attributes-class-helper.patch": {
+      "sha256": "e554787ceb496ed7ebdf7c1bd7982fa5077841d9e4bef0acfbb62dd68f7d07ef",
+      "matches_80596_source": true
+    },
+    "patches/cfr-base/0002-firmware-Rename-google-firmware-directory-to-coreboo.patch": {
+      "sha256": "a41a5443221a96ace3cce6dae9653f9d4907602d0cb5393704c5c3e46d0a9707",
+      "matches_80596_source": true
+    },
+    "patches/cfr-base/0003-drm-sysfb-Update-coreboot-framebuffer-Kconfig-symbol.patch": {
+      "sha256": "1de60312a60602c88b8645f590957b284f525a7603ec0ba10ffba92517f5a30b",
+      "matches_80596_source": true
+    },
+    "patches/cfr-base/0004-firmware-coreboot-Add-CFR-firmware-attributes-driver.patch": {
+      "sha256": "9973e6187a8352b0962b46f281ca465b5f563977c5c142f3be619f0d46972ae4",
+      "matches_80596_source": true
+    },
+    "patches/gsbus/0001-i2c-acpi-Support-raw-GSBus-transactions.patch": {
+      "sha256": "6aef4765e3cce97d3c09a5a110bdcde4cd6bb67cab8869c5c74ffe0ed34f56a1",
+      "matches_80596_source": true
+    },
+    "patches/cfr-runtime/0001-firmware-coreboot-Add-ACPI-runtime-apply-support.patch": {
+      "sha256": "4b1f5fd7eb20f21520d9767146ca8d915f7353843e5f5466dc508413f129b05c",
+      "matches_80596_source": true
+    },
+    "patches/tpm-s4/0001-PM-hibernate-add-seed-wrapped-encrypted-snapshots.patch": {
+      "sha256": "27be85e2e1b8ab5f7a8bb4b1aa8f93c355d23017f1a781cb181a0759e9fb3e9a",
+      "matches_80596_source": true
+    },
+    "patches/tpm-s4/0002-PM-hibernate-confine-encrypted-snapshot-writes.patch": {
+      "sha256": "83f2208d8c10f5859f6a2e7866d6d17b5b342161cca402fbe7e3db3c4fc2b4f3",
+      "matches_80596_source": true
+    },
+    "patches/tpm-s4/0003-PM-hibernate-permit-encrypted-snapshot-device-under-.patch": {
+      "sha256": "0d500d62e5399bc81149b7412eb72396f3de0864ca8f5e69d1a202f9e6c2da28",
+      "matches_80596_source": true
+    },
+    "patches/tpm-s4/0004-PM-hibernate-document-encrypted-snapshot-seed-ABI.patch": {
+      "sha256": "1766905044dfeab43a1689f3fdb4663c98aa8efae1944ac247bbc2ae2eb458f7",
+      "matches_80596_source": true
+    },
+    "patches/tpm-s4/0005-PM-hibernate-stop-an-abandoned-encrypted-restore.patch": {
+      "sha256": "50f3c8b51215d3afb87aa858fac907408f979090c9b03e82c7cd5484b53eba9e",
+      "matches_80596_source": true
+    },
+    "patches/tpm-s4/0006-PM-hibernate-finalize-encrypted-images-before-restore.patch": {
+      "sha256": "aa83a7b9d011309c79694507a4ad94c9a369e28ca292f60d8a66f048d104ef8b",
+      "matches_80596_source": true
+    },
+    "patches/drrs/0001-drm-i915-drrs-Ignore-sync-polarity-when-matching-mod.patch": {
+      "sha256": "c98d0023051fce2b678e13ad3d7e059c015e70009e80c8971813b8dab554ac67",
+      "matches_80596_source": true
+    },
+    "patches/bluetooth/0001-usb-core-check-ACPI-port-power-during-registration.patch": {
+      "sha256": "d5d3c456f794d27b021a51e032e4d3782fb9ab103f5a23d19fda224ee349af1d",
+      "matches_80596_source": true
+    },
+    "patches/bluetooth/0002-Bluetooth-btusb-restore-powered-off-Intel-adapters.patch": {
+      "sha256": "9a3f30a6be1ac20b0a6b75fa643e16b28a564268ccb50d4fb12d4ac64a262322",
+      "matches_80596_source": true
+    },
+    "patches/rtsx-idle/0001-mmc-rtsx_usb_sdmmc-suppress-false-CD-after-init-time.patch": {
+      "sha256": "30552a019447892862eba464125bc664efbbb354fd2ab7757f28e83066dcaba8",
+      "matches_80596_source": true
+    },
+    "patches/rtsx-idle/0001-misc-rtsx_usb-refresh-status-outside-autosuspend.patch": {
+      "sha256": "f56478fed896b6d89f18c693d0e3f0f2dcd26ee720063fae9ab8cb5c5090f37d",
+      "matches_80596_source": true
+    },
+    "patches/rtsx-idle/0001-mmc-rtsx_usb_sdmmc-narrow-false-CD-suppression.patch": {
+      "sha256": "b7152a02a80ae9202e941a91491c3eee22f87bd9eeee78cde33391190c4490f4",
+      "matches_80596_source": true
+    },
+    "patches/rtsx-3v3/0001-mmc-rtsx_usb_sdmmc-start-card-power-up-at-3.3V.patch": {
+      "sha256": "f62281d5f09e2c16b0f51578058a17fb1894449655acb5ded42cb2f7feef4e33",
+      "matches_80596_source": true
+    },
+    "patches/hda-starfighter-current/0001-ALSA-hda-realtek-Limit-Star-Labs-internal-mic-boost.patch": {
+      "sha256": "bc1f7f14b3b08a997425bc42026eed7db89509dd37af1b94a44c0af4dbe2c848",
+      "matches_80596_source": true
+    },
+    "patches/hda-starfighter-current/0002-ALSA-hda-realtek-Add-StarFighter-HDA-SSID.patch": {
+      "sha256": "0a189df4c31fa5096e3df68c372ca8919dc671c2e97da6e2271850e826f85dc5",
+      "matches_80596_source": true
+    },
+    "patches/tpm-no-retry/0001-tpm-reject-malformed-retry-responses.patch": {
+      "sha256": "85d36f4aab2626b3f6d68055121d7fc9cda4fc7f926fb106ba0d4c48bdf850b1",
+      "matches_80596_source": true
+    },
+    "patches/tpm-no-retry/0002-tpm-raw-file-disable-command-retries.patch": {
+      "sha256": "467979fdefc588cc681608d99f095ab6faf7e4f39c9d9aa3bae11ae20cdcf190",
+      "matches_80596_source": true
+    },
+    "patches/dave-sleep/0001-PM-suspend-reject-s2idle-on-DAVE-firmware.patch": {
+      "sha256": "f281ca199d25755951acbfda03ae34da23b785e6af0af435f0527d487de7fd5f",
+      "matches_80596_source": true
+    }
+  },
+  "config_path": "/home/sean/Documents/vale/validation/shim-fedora-20261010/inventory/rpm-public/kernel-vale-7.2.8-3.vale.fc44.x86_64.rpm/usr/lib/modules/7.2.8-vale3/config",
+  "config_sha256": "cf562eb28f2c448fea09b1f2e39922336fef06f589db923e4b90002bdb671a00",
+  "binary_rpm": "/home/sean/Documents/vale-release-validation-20261004/dave-no-s2idle/native-rpms/kernel-vale/RPMS/x86_64/kernel-vale-7.2.8-3.vale.fc44.x86_64.rpm",
+  "srpm_local_path_available": false,
+  "s4_patches_byte_identical_to_inspected_excerpts": {
+    "0003-PM-hibernate-permit-encrypted-snapshot-device-under-.patch": true,
+    "0006-PM-hibernate-finalize-encrypted-images-before-restore.patch": true,
+    "0005-PM-hibernate-stop-an-abandoned-encrypted-restore.patch": true,
+    "0002-PM-hibernate-confine-encrypted-snapshot-writes.patch": true,
+    "0001-PM-hibernate-add-seed-wrapped-encrypted-snapshots.patch": true,
+    "0004-PM-hibernate-document-encrypted-snapshot-seed-ABI.patch": true
+  }
+}
