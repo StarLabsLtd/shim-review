@@ -45,8 +45,10 @@ emergency-revocation responsibilities remain to be confirmed.
 ### Who is the secondary contact for security updates, etc.?
 
 Emma Marsden, Star Labs, emma@starlabs.systems, confirmed secondary contact.
-She does not yet have a PGP key. A public key and her backup responsibilities
-remain required for the review process.
+Public PGP fingerprint: 0954B68651694FEAE5703B9B9F1033E526D797F4
+(emma-marsden.asc), generated 10 October 2026 with a two-year primary-key
+expiry. Secure handoff to Emma and her email/key ownership challenge remain
+outstanding; backup responsibilities also remain to be confirmed.
 
 ### Were these binaries created from the 16.1 shim release tar?
 

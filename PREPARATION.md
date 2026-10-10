@@ -30,10 +30,11 @@ are not silently included.
 
 1. Worldwide deployment is confirmed: Vale must boot on non-Star-Labs PCs
    without requiring enrollment of the Vale key in third-party firmware.
-2. Sean owns updates; Emma is confirmed secondary contact and has no PGP key
-   yet. Confirm emergency-revocation and backup-contact responsibilities.
-   Sean's existing public PGP key is included; confirm its use for the review
-   challenge and obtain Emma's public PGP key.
+2. Sean owns updates; Emma is confirmed secondary contact. Both public PGP
+   keys are included. Emma's key was generated locally on 10 October 2026;
+   hand it over securely and complete each contact's email/key ownership
+   challenge. Confirm emergency-revocation and backup-contact responsibilities
+   and use of Sean's existing key for review correspondence.
 3. Planned custody is two encrypted removable copies in locked offsite storage,
    with one brought to the office for signing. KEY-PROTECTION.md defines the
    proposed requirements. Implement and verify them before claiming operational
