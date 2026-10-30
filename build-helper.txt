@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 output=${1:?usage: build-vale-shim.sh OUTPUT_DIRECTORY}
 mkdir -p "$output"
 output=$(realpath "$output")

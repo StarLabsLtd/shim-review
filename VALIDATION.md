@@ -1,11 +1,12 @@
-# Frozen Fedora shim-chain evidence
+# Historical Fedora validation — original certificate
 
-The Linux lane's retained 10 October 2026 evidence qualifies the reconstructed
-enforcing-OVMF chain for source `80596e30435c4d1845bb52319aeb50de2907da0f`,
-image `202610061000`, kernel `7.2.8-vale3` and systemd `259.5-2.vale.fc44`.
-This packet reconciliation did not rerun tests. Supplied commands/results are
-summarized in fedora/runtime-report.txt and fedora/module-runtime.md; original
-raw receipts remain in the sibling shim-fedora-20261010 validation directory.
+These tests ran on 10 October 2026 with the original certificate, source
+`80596e30435c4d1845bb52319aeb50de2907da0f`, image `202610061000`, kernel
+`7.2.8-vale3` and systemd `259.5-2.vale.fc44`. Results are summarized in
+fedora/runtime-report.txt and fedora/module-runtime.md.
+
+Current RSA-4096 authentication tests are documented separately in
+CANDIDATE-VALIDATION.md and normal-chain-evidence.json.
 
 ## Exact shim binding
 
@@ -18,7 +19,7 @@ bytes 216–219 and security-directory bytes 296–303; a 2032-byte certificate 
 was appended at original EOF 1025232. Normalized body SHA-256:
 `d6e2ac4ecc282bef63af4a00de1372afb96e4352150fd8bd3adbaa1adae47c2a`.
 The producer's signing commands and retained fixture hashes also bind that exact
-unsigned input to the tested file. This is not merely a same-certificate inference.
+unsigned input to the tested file.
 
 Firmware PK/KEK/db contained only the disposable test authority, certificate
 SHA-256 `76e67e1692c20c2cf75774f99472d89d5704982686af28e4187b5e8574318359`.
@@ -68,17 +69,13 @@ BOOTX64 equals the installed systemd loader; the ISO's BOOTX64 is the recovery
 dispatcher. No other selectable EFI updater, shim, MokManager or fallback utility
 was on the original surfaces. Exact rows are in SBAT.md.
 
-## Limits and preserved history
+## Scope
 
-The original ISO does not ship shim: these are reconstructed fixture chains.
-Original ISO/disk/paired firmware and TPM state were preserved. A future
-Microsoft-returned binary needs separate exact-artifact qualification, plus
-installer/installed ESP and update integration. The frozen vale3 predates later
-authenticated-S4 size and worker-thaw fixes; full DAVE/S4 acceptance is not claimed.
-Module-key lifecycle remains a separate owner-policy question. These limits do
-not require repeating passed cases or waiting on unrelated newer cohorts.
+The original ISO did not ship shim; the tests used reconstructed boot chains.
+The hashes above identify those historical inputs. DAVE/S4 release validation
+is separate. MODULE-KEY-LIFECYCLE.md describes the selected module authority.
 
-The October 1 Ubuntu validation is retained unchanged in
-HISTORICAL-UBUNTU-VALIDATION.md; it is not Fedora evidence. Build-first.log,
-build-second.log and reproducibility.txt remain the original shim build evidence.
-Publication of the complete public source/raw-evidence set is still pending.
+The October 1 Ubuntu results are in HISTORICAL-UBUNTU-VALIDATION.md.
+Build-first.log, build-second.log and reproducibility.txt describe the two
+29 October RSA-4096 shim builds; original builds remain at the historical tag.
+Microsoft's returned shim will be tested before ESP/ISO and update integration.

@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "scope": "Selected sources for the frozen Vale shim submission and Fedora 202610061000 boot chain",
+  "published_submission": {
+    "tag": "starlabs-shim-x86_64-20261015",
+    "commit": "a65006c7429ced4be8e6161b7f6da5df20cf79c7",
+    "issue": "https://github.com/rhboot/shim-review/issues/591",
+    "unsigned_shim_sha256": "e0fa2d72123cd218ac25c1d46ea991ffe7f1cea7cbe597b87a04dd28cc4df7c7"
+  },
+  "archives": [
+    {
+      "file": "vale-boot-context-80596e3.tar",
+      "sha256": "997b72b1ccf53d465cb136f570792bbc8a404af6af3f0d0c5fddc20be11f80c9",
+      "bytes": 102400,
+      "tar_umask": "0022",
+      "source_commit": "80596e30435c4d1845bb52319aeb50de2907da0f",
+      "source_tree": "26a882100793ac8058e2066991971f9090a812c2",
+      "archive_prefix": "vale-boot-context/",
+      "transforms": [],
+      "files": [
+        {
+          "mode": "100644",
+          "git_blob": "c1b31d7edeec2a2693813c0742618b4f4c8c6f13",
+          "sha256": "d317723c6732f5a511f719f9eb34168bf4ee1f6917764020c3f55833d2e6cbb1",
+          "path": "elementary/installer/recovery-dispatch/README.md"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "6496ed57a91f4708ee57b607d7c6191a9dedd91b",
+          "sha256": "c7081a6be89959bad630497c8c4837a005352d66d86f07a12396bcf06e7e887a",
+          "path": "elementary/installer/recovery-dispatch/dispatch.c"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "55d9a62417fcf408f32bb5b3cc60d4bc9b7682c7",
+          "sha256": "26b5a71abdef8be2b9056063e9e5f2b4496498222abc941838a5cf8a95a60711",
+          "path": "elementary/installer/recovery-dispatch/smbios.c"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "6812cc5fca052936457f0d3e59b40f7041f4003a",
+          "sha256": "2ded0924abe3ce10fe38af200b4fb24562abba66b709c22f4c9c5677a553259d",
+          "path": "elementary/installer/recovery-dispatch/smbios.h"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "724d460417b1fd7dbb2d50941d643e9748c44297",
+          "sha256": "5e0415d937cfea8f716501095d5e126094b8df5bf9c90cfa659315be525aef07",
+          "path": "elementary/installer/recovery-dispatch/test-dispatch.c"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "276fb78cafeaf5bee252d1f2a9272c9d87279687",
+          "sha256": "fc94b120ef4fe7b822a9ee0502a5c2a8bdb6ff917f4709755babb738e53e13a9",
+          "path": "elementary/installer/recovery-dispatch/test-leaf.c"
+        },
+        {
+          "mode": "100755",
+          "git_blob": "e495f660efb18ff962dc9623b55f981ad5fecae8",
+          "sha256": "a68c92e9018c5a7e8d24a4795aa3eac922e4985b1da4a757a581713b84cdf9c6",
+          "path": "elementary/installer/recovery-dispatch/test-qemu.sh"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "d0249f031af393a1ce674e29ee74d0566da8d5db",
+          "sha256": "9083c98c3c3d7aadf1fe979deb78a53ab7be1a5b7c75ac1bfcfe4651014004cc",
+          "path": "elementary/overlay/mkosi.conf.d/vale-secure-boot.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "ef7e79309f93811e693cbb5ad001b525576c25cd",
+          "sha256": "880c63b7efc83b9c24ed262d54e4c511a1e9bd999b4aa16cd02578157b974ffc",
+          "path": "elementary/overlay/mkosi.images/sysupdate/mkosi.conf.d/vale-secure-boot.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "cc620bf6456bdc68478d91fe123a5102d532f65d",
+          "sha256": "e39f84f56f6aca2ca49aa6bcb56bcfe9e5358f8f557a7a02dd7eadf5848dba9e",
+          "path": "elementary/shim/Dockerfile"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "6df84a9980f0a6e24fa1947d73eb23eae3933a09",
+          "sha256": "3f05f580d17b1106052876352c5cd1ccbc303b04f0bce409de967fdcad44addf",
+          "path": "elementary/shim/sbat.vale.csv"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "016429c1625eccb611c7ca8368b21287e4dcaa23",
+          "sha256": "ad0e25a4256f693c469a85c6b1a9bc1081537100a17d4c4c72a4332d8eb101ee",
+          "path": "elementary/ukify/README.md"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "f22f4f9d2bd2daba6bc3e3529a0ec6e0f2187a7d",
+          "sha256": "155284801598ad50f05f40a436e6e17ef376782da6ec2e43e94f7f83471776a0",
+          "path": "elementary/ukify/measure-prefix/dave-prefix-v1.json"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "b6604fe79b129fb051aae6f375422de42ba43117",
+          "sha256": "716efc695f68df3764bf89a36ea7e03440e8916a305bb75761ada033da258a8a",
+          "path": "elementary/ukify/sbat.vale.csv"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "14db633648b2650ecccd5137a2bd5c124e1deba4",
+          "sha256": "bd26c2a1e80d7c2998e05342b89b361d260fc56adadb51fd7f04238c8fa6fce5",
+          "path": "elementary/ukify/upstream.lock"
+        },
+        {
+          "mode": "100755",
+          "git_blob": "3427b9cd85381343f98e4bbf90f3b96b7ef01921",
+          "sha256": "b6a564fa1db47eff272dc8cc0048832562e0d5b8dc3bf6a24273c1ccafb6f5b7",
+          "path": "image/fedora44/assemble-iso.sh"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "194fb5550953a620b3e49f6d4136c14ef06a76dc",
+          "sha256": "9fcd176215b457e3f954f17e18defd0864b897bd6a5b3d9c04f6963b1186b648",
+          "path": "image/fedora44/mkosi.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "7a3a9070b79fcce1fbe98cf560eaa8c4e20f082a",
+          "sha256": "e4a373ee4ae94d017ab61e8c60e3095056ada8902bd09bec658023a60f70b569",
+          "path": "image/fedora44/mkosi.images/vale-initrd/mkosi.conf"
+        },
+        {
+          "mode": "100755",
+          "git_blob": "04c0f28a7f05a4625c454fac1a1dcba654fd1d1b",
+          "sha256": "204e1c3869f6c5c5c8cd6edfc4d42808a079c3275eae69a019d444ef0afe4ed1",
+          "path": "image/fedora44/stage-installed-boot.sh"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "a39ecb2e8e3046aaf8ab0359badae337b9eb0ec5",
+          "sha256": "d460474c8e4a15eae2757773722b5b660391d22cd90b63d4d7d3a24deadc2f20",
+          "path": "image/fedora44/ukify.lock"
+        },
+        {
+          "mode": "100755",
+          "git_blob": "6eb21b9cdc088727b982e3a9ea948b10ee141c6d",
+          "sha256": "200fc779788e2d545d505c932a89a0709b66453d543ba3ac24f29e8468462fe4",
+          "path": "scripts/build-recovery-dispatch.sh"
+        },
+        {
+          "mode": "100755",
+          "git_blob": "0905486ada94eef61f60c8faa00ff292f27d3deb",
+          "sha256": "0c7cfef8047a0409e6bc1ce4af07b8722f42c26015235d78a0c61f8947be3bfb",
+          "path": "scripts/build-vale-dave-uki.py"
+        },
+        {
+          "mode": "100755",
+          "git_blob": "3840ebb26da1cbb7d0fd712358d8345f941783d0",
+          "sha256": "e6d0934043d11f275d6d429bef54a80d7d7681d37819e17840ea8218cf5afd82",
+          "path": "scripts/prepare-fedora-tree.sh"
+        },
+        {
+          "mode": "100755",
+          "git_blob": "8f25e32a3704c8ea5204b0c4933c3f73aed1c12e",
+          "sha256": "a99252d2f739f352359ed8db31c68d1f7f1a396ca824249a66cd24343005aa2b",
+          "path": "scripts/ukify-with-vale-pcr"
+        },
+        {
+          "mode": "100755",
+          "git_blob": "e7617e77b1c1ce627355e797cef2a6a92a2496d2",
+          "sha256": "4cb07335fec8e942de68cfb1a0deeb34ab168702382c3356bc1220a373a5cff1",
+          "path": "scripts/verify-vale-uki.py"
+        }
+      ]
+    },
+    {
+      "file": "systemd-package-4746c08.tar",
+      "sha256": "c7539f176d72481354314c16af7d906c57e36dab50c40fb843b1a40b65ddf2b9",
+      "bytes": 122880,
+      "tar_umask": "0022",
+      "source_commit": "4746c08526eaf1e9ec5c171a8678acecfead4bbb",
+      "source_tree": "f6825bbf214c5cebf4d69e9ef85f9070ca654ed1",
+      "archive_prefix": "systemd-package/",
+      "transforms": [],
+      "files": [
+        {
+          "mode": "100644",
+          "git_blob": "51ed0d8dae7d8fdc31277ee2776e9f467feaa42c",
+          "sha256": "ba92b2b643bc5cb6719a59e7e2f0b8d35fb9d6b225053212cdbbb0d0ed5edb79",
+          "path": "packages/fedora/specs/systemd.spec"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "5cf5677f721ef5d0e54bac76b7521fc692eb57d9",
+          "sha256": "bad4f0bbf268860582402bb4131b7b3586bf1f098a8bf89a6adf503191bc8913",
+          "path": "packages/fedora/systemd/10-map-count.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "025465712cf742b93d130f858b72d6842ab50c69",
+          "sha256": "f7c8e9d3455bf54795063e3914956b4e15ba52f493b0f2304abef6326a80c6cb",
+          "path": "packages/fedora/systemd/10-oomd-defaults.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "63d8162c7831015aa71f6205a4084df8e35f5dbc",
+          "sha256": "3f0d6882312affecddfdc5a204a44c34b90c573839f2a4850a26b44f528520bd",
+          "path": "packages/fedora/systemd/10-oomd-per-slice-defaults.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "4852648b974cdc6dc0b8edb341e097c43beb9aa5",
+          "sha256": "ae6b234f92bc22f1201a7572b59b454c9809f33c80d13f361b9674e1801acc37",
+          "path": "packages/fedora/systemd/10-timeout-abort.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "4fbaf97ca6993db067c8cc114e1ba16bfd77421b",
+          "sha256": "f7881466bff200865ec2c6b5f989ed35855ac45420a55ae5ace805f9e5111828",
+          "path": "packages/fedora/systemd/20-yama-ptrace.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "850b64540e050e5f63afe3d0075c889a89f40391",
+          "sha256": "05cda1baec9b869bbc6371b75462aa5e2cff2165e49778f19955dcb3bf09b54e",
+          "path": "packages/fedora/systemd/60-block-scheduler.rules"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "8440f98ef48c4de1cb59d53e6bc5d0cee66257ed",
+          "sha256": "11efa1aee1d52e74b3ca5d1db903e9e1f3ca5e07498c25ea13e40452e2430e1a",
+          "path": "packages/fedora/systemd/98-default-mac-none.link"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "3f5e83c349d65aaa82128e220b95d331d745791b",
+          "sha256": "1065b3ed2e54f8ec03162a2930b5063f1b30b00c16f28f303029a51ca0bd4470",
+          "path": "packages/fedora/systemd/inittab"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "6a33b882cd9aeffb0aa390dea9d36e0547214263",
+          "sha256": "367ceaf654221f97c655501917ab525d9965975a7b78124d26feec7177c4aff2",
+          "path": "packages/fedora/systemd/libabigail.abignore"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "534b0e77c2921bfac0ee7c2ded2a5e45b61f5c7e",
+          "sha256": "6d0c4e75d3ba32fdc540a10d985b4d539b8cf98e9594e0750119c9a74be63ff3",
+          "path": "packages/fedora/systemd/macros.sysusers"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "d8d8c1d58d70c7a8250091fe0980ada807863963",
+          "sha256": "b7c3941912208657b68a5890b8e320d626a6bc17290a223b46071e251b240160",
+          "path": "packages/fedora/systemd/macros.sysusers.compat"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "38bde604a4c011c2d9a910e78b130c2ed544dd1c",
+          "sha256": "f51d9b6f8ef2bf1ee031f2f9d170f1c52b5ae5f00776b4978c773f4f16c27840",
+          "path": "packages/fedora/systemd/split-files.py"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "41c0c41d86d0d5db4093cf4343bba4bcadd7cb54",
+          "sha256": "51d16ee2e7eef12dd42e924af6b835861e8b79d11921ba0418d7d0aec7a2a93b",
+          "path": "packages/fedora/systemd/sysctl.conf.README"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "a1b400cbf22c3fea272e31813d360e1474996e8a",
+          "sha256": "c2559b1244fb04f7fe214628daf09e12d431560b069b5ef346ace1ceddbe1bc9",
+          "path": "packages/fedora/systemd/systemd-journal-gatewayd.xml"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "e115a12a2affd5a6f6d09ae3a3294db9020ea140",
+          "sha256": "29a7ce0c161a99c0bb48ee6fd5def97d88c7d1c1dd776d4b4d93b6be0b6fdd9b",
+          "path": "packages/fedora/systemd/systemd-journal-remote.xml"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "c8794272585269bcfc002e6d3dfd1ae30e99ed19",
+          "sha256": "e22c23fb4618a2021322c5b68fc16b872a27fe8a3edb42e8abec83896eba835a",
+          "path": "packages/fedora/systemd/systemd-udev-trigger-no-reload.conf"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "82dcd32f8bf5a884e27366b10e4a68c2456d0a8c",
+          "sha256": "40275c8e16f29735096248ac71d41663e73195b7ab54b4a7a98a5f186c81c9e2",
+          "path": "packages/fedora/systemd/systemd-user"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "367c1378eda4c439246c3338afbd1db1b2615f59",
+          "sha256": "49cffe66a7a366272e9ebac212f50dc9bc8d55aa6b4ef092fc87cb230bd50520",
+          "path": "packages/fedora/systemd/sysusers.attr"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "944abff1268f0276e96f056757fdddd25d5365ff",
+          "sha256": "b203db9ec51b72c27da7dabe112839d195d53ea919f1683f0ed994e823fd4af4",
+          "path": "packages/fedora/systemd/sysusers.generate-pre.sh"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "7b3d7047062119910e2d612b50f3637701ddb846",
+          "sha256": "1e67ccda8f076a5210f06086ef14d418c80336220f6e8344a8839e43344fd139",
+          "path": "packages/fedora/systemd/sysusers.prov"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "3c1e04f036ab7117a11fe6f611f13b18d5dbdfb7",
+          "sha256": "0f922519b313e968534e54bbb655b4019b17b6e04ebc30326785149ba6ce2911",
+          "path": "packages/fedora/systemd/test_sysusers_defined.py"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "28ddc1f870cfaf6bd4211b5ec4fa78b4a7ea92dd",
+          "sha256": "e15f371b0c028f086ee26b488f123ae5bfb50410ec950a26cee6dc7a7f888cde",
+          "path": "packages/fedora/systemd/triggers.systemd"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "2c236e039aec55f958d9c0c50b75371c12d9d6b7",
+          "sha256": "a3fd9f7f7492186d05cfc22f88b0910ebec30d18eb18bced4954e4aa21882fcc",
+          "path": "packages/systemd/patches/0001-sleep-Allow-userspace-hibernation-backends.patch"
+        },
+        {
+          "mode": "100644",
+          "git_blob": "ae6630d30f138cacc92e8afa97d5758d92ec11cd",
+          "sha256": "b9adf8fc1cb6b92a2c4400c36775efd5136747442c87b34b982d150fc5e90720",
+          "path": "packages/systemd/patches/0002-boot-add-Vale-SBAT-entries.patch"
+        }
+      ]
+    }
+  ],
+  "upstream_sources": [
+    {
+      "component": "shim",
+      "version": "16.1",
+      "url": "https://github.com/rhboot/shim/releases/download/16.1/shim-16.1.tar.bz2",
+      "sha256": "46319cd228d8f2c06c744241c0f342412329a7c630436fce7f82cf6936b1d603",
+      "verification": "Existing tagged source-signature/reproducibility evidence; not downloaded or rebuilt during this preparation"
+    },
+    {
+      "component": "systemd",
+      "version": "259.5",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/s/systemd/systemd_259.5.orig.tar.gz",
+      "sha256": "80ed55a8a69c4bd1fb12a36659303372b37baf9ee224ef4f032db4b748be0f76",
+      "verification": "Retained upstream tarball hashed during this preparation"
+    },
+    {
+      "component": "Linux",
+      "version": "7.2.8",
+      "url": "https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.8.tar.xz",
+      "sha256": "65a07d5d0d88dac963b190f087ccd1498622cb742ccfa1b4e46f8110f08832a0",
+      "verification": "Declared digest from existing frozen source-lock and kernel evidence; not downloaded or rebuilt during this preparation"
+    }
+  ],
+  "systemd_producer": {
+    "source_commit": "4746c08526eaf1e9ec5c171a8678acecfead4bbb",
+    "source_rpm": "systemd-259.5-2.vale.fc44.src.rpm",
+    "source_rpm_sha256": "987e62bdc0a91c108062070d0c61008ae6c8c97d3ae01382b423549e7a426cc8",
+    "boot_rpm": "systemd-boot-unsigned-259.5-2.vale.fc44.x86_64.rpm",
+    "boot_rpm_sha256": "ec4a55646d6be36bef732fc88a1c3a847485e13331106140476b6f23ebd2a802",
+    "build_time": 1791152400,
+    "exported_package_files_matching_source_rpm": 25,
+    "applied_patches": [
+      "0001-sleep-Allow-userspace-hibernation-backends.patch",
+      "0002-boot-add-Vale-SBAT-entries.patch"
+    ],
+    "source_receipt": "Retained native-tools-52d-receipt.json; frozen inventory/rpm-cohort-public.json"
+  },
+  "inspection": {
+    "all_exported_file_modes_match_git": true,
+    "exported_files": 50,
+    "all_exported_file_contents_match_git_blobs": true,
+    "source_bytes_transformed": false,
+    "private_key_token_marker_scan": "No matches in selected source files",
+    "local_home_path_scan": "No matches",
+    "generic_build_paths": "Pinned SDK Dockerfile uses generic /tmp build paths, preserved unchanged",
+    "builds_run": false,
+    "tests_run": false
+  },
+  "limitations": [
+    "Source and build records are inspection evidence, not a newly executed reproduction.",
+    "The recovery dispatcher source is exported from the frozen cohort; no new reproducible dispatcher-to-binary comparison is claimed.",
+    "Production signing-key custody, contact challenges, SBOM applicability/format and upstream acceptance remain pending."
+  ]
+}

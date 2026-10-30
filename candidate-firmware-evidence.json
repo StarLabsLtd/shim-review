@@ -1,0 +1,237 @@
+{
+  "scope": "RSA4096 local enforcing-OVMF fixtures; no Microsoft signature, existing guest/root disk or TPM state; no overall native boot PASS",
+  "results": [
+    {
+      "case": "dispatcher-entry-only",
+      "verdict": "PARTIAL_dispatcher_executed_installer_missing",
+      "observed": "Newly signed dispatcher executed; missing exact installer UKI produced Load Error. Not recovery PASS.",
+      "final_serial_sha256": "1f0ff1d1beb500b09237f644fe571e9f311d0936eb7969a37032746f429a18e9",
+      "original_observation_sha256": "63d4a7cb5faa0adac2d19fb3b8d0159786de1975b000dae77cc3ce37fc1e3229",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "6921692c94fecc689f049ab481300015d63a3d763bd1a56cd6463694e8106f20"
+      },
+      "carrier_readback_manifest_sha256": "a528bb4f319c27f79eedeae875a006fc7ec29eeb59e615fe743693777a210fc2",
+      "command_sha256": "c9b829ebf5adbd3d62b3fdd0b59127ba38de4979a32e40fbd735d2c5611db8f7",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "9ed20e4f4916b798a39e5744bdfddee1cd9e2ed11fb6083204ea9228f08ec55a",
+      "final_screenshot_sha256": "9ed20e4f4916b798a39e5744bdfddee1cd9e2ed11fb6083204ea9228f08ec55a"
+    },
+    {
+      "case": "firmware-direct-loader",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Access Denied -- rejected probably by Secure Boot",
+      "final_serial_sha256": "a29f2f4e9bdbba7624592568d787707d4a2c7c4ee65218e1e0761d73a19363ab",
+      "original_observation_sha256": "c522573e4b16b90aacc35fc644da9f9f36cacde22b53813d1c05862633e6f448",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "7eb0766dc1d344953f476b46fb08cfa36f8c0f683d727c3420312073b6379fa2",
+      "command_sha256": "24457edd5f90bbbb77fe459fb6692fa0bde6c7b7814368cf86c5545ea8bcb551",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "e52a61c836d5b4d36cb8805bd4489c3ea631dc1850974f04aee508495431c621",
+      "final_screenshot_sha256": "e52a61c836d5b4d36cb8805bd4489c3ea631dc1850974f04aee508495431c621"
+    },
+    {
+      "case": "loader-menu-positive",
+      "verdict": "PASS_signed_loader_execution_only",
+      "observed": "New shim and newly signed systemd-boot reached the menu with the exact retained UKI entry. Not a completed UKI/OS boot.",
+      "final_serial_sha256": "8251ec7d68a1250c6ba002d66ac99f31c78d77d42ce23b8d5a037a615772c44d",
+      "original_observation_sha256": "6a44d13dd91a4894c4bfd2798b789830e154bb90f2da4b0fa347b2d31c92a568",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "7fc187beef7717f47aaeea2dde3cbda70b0b04debeec1ed50b1451f29c129e61",
+      "command_sha256": "716b389293329f870ac520b14987caca3b941fcce47cff0751a49f800d4a2c10",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "d0fb8fe14c974221a8277c7a5555f0a6e31336d2a9b414d55f6b49271e466045",
+      "final_screenshot_sha256": "7c5a2d68ec71f6a6d55fcc1998d0124998362784b0ae4bfe0e467adee4bfb92f"
+    },
+    {
+      "case": "missing-loader",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "systemd-bootx64.efi - Not Found",
+      "final_serial_sha256": "f56dad6ccfa8994d6be501c61af2b24320352f2616e1ab05d9bbd35213d2f474",
+      "original_observation_sha256": "f8c2b0d059a0c69fc3b053dbcf6b714db08221829d1b28d7d527fefe065e8877",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "1fb877664e17cc60cdd4e0fc8187e5ea55c6a45d064761b4a11e933bd8e905d4",
+      "command_sha256": "8181284b29b7fcb80eb65c30e704f795074b2259f3039e6ec00874fdc438ccd4",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "15b1b43ef2768cbf9d57e0fb8a00c9efba97ea4d4c935fb07b77ed91c747f534",
+      "final_screenshot_sha256": "15b1b43ef2768cbf9d57e0fb8a00c9efba97ea4d4c935fb07b77ed91c747f534"
+    },
+    {
+      "case": "old-loader",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Verification failed: (0x1A) Security Violation",
+      "final_serial_sha256": "62370a1985fbe8c13938a3dab21b11eb478c80671e198c1edca58a0ebe93b024",
+      "original_observation_sha256": "7af145c72ae849b843654f9932b741ce21258b1fb21cccbe3c7e479fcc8d2789",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "ba71acffa69d2712a0e5ba6771489f9d4363a08e5a06000f507e1df5b421dda6",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "f3a55bf7eb86c7b189387af8c722950a15f0b87403215939ee8fee03db7dfcfb",
+      "command_sha256": "fb96ffccb2d6cbd1adcf523eb15cdfdc1c2e431832aa431b69ad62d9cb1575e1",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "677f686dc7a9eb35e7434e74c07136ad83b48439f8739d88f3f30a2cd0cef0e9",
+      "final_screenshot_sha256": "677f686dc7a9eb35e7434e74c07136ad83b48439f8739d88f3f30a2cd0cef0e9"
+    },
+    {
+      "case": "old-uki",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Error loading EFI binary",
+      "final_serial_sha256": "7d3f623bd937123a10e4f375d9dc950ed6abc61ee1e10e0623ab9023b933a633",
+      "original_observation_sha256": "dc3aa5cf8f74966c67edee28f5f2224d3123ede372b54f394336a229e97acaa7",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "d0a0cc13655fad321e305afd6578002a9d9d52303a11db67055c0a95eda7698b"
+      },
+      "carrier_readback_manifest_sha256": "e2962a8ecec86660d2af9e54ab5d3a9a463de31d8fbd9c335d8530104690bb2d",
+      "command_sha256": "bf689071cedd227c5b6bde80fd41bd83c6143feed8366e1017e5cc6116ff449d",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "4f71f2e431e1cad6723b6c867e261832d222087e0f3d84bcf82f02977c6eb623",
+      "final_screenshot_sha256": "4f71f2e431e1cad6723b6c867e261832d222087e0f3d84bcf82f02977c6eb623"
+    },
+    {
+      "case": "sbat-loader",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Verification failed: (0x1A) Security Violation",
+      "final_serial_sha256": "62370a1985fbe8c13938a3dab21b11eb478c80671e198c1edca58a0ebe93b024",
+      "original_observation_sha256": "0fb3f0d7f68fb7838d7f05aa84b3ead7a30857cadcb400d7f95105a53f111fd2",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "7fc187beef7717f47aaeea2dde3cbda70b0b04debeec1ed50b1451f29c129e61",
+      "command_sha256": "9d2c5efb2fe8693cf5037a131bf8931e0d3542217aa67c5f4ba817fd9f2089fb",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "677f686dc7a9eb35e7434e74c07136ad83b48439f8739d88f3f30a2cd0cef0e9",
+      "final_screenshot_sha256": "677f686dc7a9eb35e7434e74c07136ad83b48439f8739d88f3f30a2cd0cef0e9",
+      "sbat_policy_sha256": "312ff2e78aebbe18dcaca622c9d23a7014ebed9e422a616ac87564c65623dea1"
+    },
+    {
+      "case": "sbat-uki",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Error loading EFI binary",
+      "final_serial_sha256": "7d3f623bd937123a10e4f375d9dc950ed6abc61ee1e10e0623ab9023b933a633",
+      "original_observation_sha256": "a7e7f2cf6ba1973afc6894fc12ea115de5abc2b45c5c624c566c648251c82802",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "7fc187beef7717f47aaeea2dde3cbda70b0b04debeec1ed50b1451f29c129e61",
+      "command_sha256": "0eb1e79aabed580f19480a0f55720bcdf3feb5d348a1f5fe5053b0120dab41a7",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "4f71f2e431e1cad6723b6c867e261832d222087e0f3d84bcf82f02977c6eb623",
+      "final_screenshot_sha256": "4f71f2e431e1cad6723b6c867e261832d222087e0f3d84bcf82f02977c6eb623",
+      "sbat_policy_sha256": "eedc5a4bc7e7cf96586d14af07abacf628889d1c44aff5c628ac88246ecd3fd2"
+    },
+    {
+      "case": "tampered-loader",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Verification failed: (0x1A) Security Violation",
+      "final_serial_sha256": "62370a1985fbe8c13938a3dab21b11eb478c80671e198c1edca58a0ebe93b024",
+      "original_observation_sha256": "16afb0258128f4773f33a009660bfc1d5f1e76bf0d6ce9ea9766e28762b10f8d",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "7017bcb823c482ec4ab8d0d5c4501f20cd4605cdf0446ef69fc2ef7ff4c821cd",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "416f6c51421887a834f5d9271a3058a092ee4362fa698e295b6b16519be47531",
+      "command_sha256": "084be112cd6a40bb258f607b8f78219ac9b2d2f91baff77cdc30f4b96aba8eef",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "677f686dc7a9eb35e7434e74c07136ad83b48439f8739d88f3f30a2cd0cef0e9",
+      "final_screenshot_sha256": "677f686dc7a9eb35e7434e74c07136ad83b48439f8739d88f3f30a2cd0cef0e9"
+    },
+    {
+      "case": "tampered-uki",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Error loading EFI binary",
+      "final_serial_sha256": "7d3f623bd937123a10e4f375d9dc950ed6abc61ee1e10e0623ab9023b933a633",
+      "original_observation_sha256": "82a3b830c49be2aa3dfc4e5e9b911b21635b457b80a354f1724fd2f49f5663ad",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "b3855c811d51d667a23272ecdcf7abfe75f1e9f3c7eff56d7b4d4f3882557e6c"
+      },
+      "carrier_readback_manifest_sha256": "bdecb2ca6c3b8953284d3843959715502f8be3c86ae35a576774dcb06fee4297",
+      "command_sha256": "72df4aef2a4277e901d758a7a02738a5af4d3c751a718bd59634598d457d2a12",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "4f71f2e431e1cad6723b6c867e261832d222087e0f3d84bcf82f02977c6eb623",
+      "final_screenshot_sha256": "4f71f2e431e1cad6723b6c867e261832d222087e0f3d84bcf82f02977c6eb623"
+    },
+    {
+      "case": "trusted-uki-entry4G",
+      "verdict": "INCONCLUSIVE_no_completed_native_boot",
+      "observed": "No full OS/root/installer disk attached; QEMU exit, silence or splash is not a boot PASS.",
+      "final_serial_sha256": "44af331f030dbda48fedc132c0e82f8b564446582e09ea94ddeb8cb16dbead72",
+      "original_observation_sha256": "583bdd7b9e9b602cf6f10260b4f16b86d86839fe32b9a67acbd87d1dd7e8aae8",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "7fc187beef7717f47aaeea2dde3cbda70b0b04debeec1ed50b1451f29c129e61",
+      "command_sha256": "5da349f8fdd465a1e1dc322c98a8540e6e0ecc0de581cccb2f8f0b7a4f5bf4dc",
+      "qemu_exit_code_before_deliberate_cleanup": 0
+    },
+    {
+      "case": "unsigned-loader",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Verification failed: (0x1A) Security Violation",
+      "final_serial_sha256": "62370a1985fbe8c13938a3dab21b11eb478c80671e198c1edca58a0ebe93b024",
+      "original_observation_sha256": "68e2a232b4f3d0e8f9475032fcf2fb215e93c13806ce603146ffb75fdff0c01e",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "551049e65cb130817d83fb895271fa49546725954e9f6acb9a6d77b575f8fc98",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "carrier_readback_manifest_sha256": "05bc87050981a9901a5071344ec0428b6fb6fdf459d43341753d350e929ab46d",
+      "command_sha256": "14ae334ade39a1ba8b01afe52630d7250d14676c8b991fe64a67adde2b93e0f3",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "677f686dc7a9eb35e7434e74c07136ad83b48439f8739d88f3f30a2cd0cef0e9",
+      "final_screenshot_sha256": "677f686dc7a9eb35e7434e74c07136ad83b48439f8739d88f3f30a2cd0cef0e9"
+    },
+    {
+      "case": "unsigned-uki",
+      "verdict": "EXPECTED_REJECTION_OBSERVED",
+      "observed": "Error loading EFI binary",
+      "final_serial_sha256": "7d3f623bd937123a10e4f375d9dc950ed6abc61ee1e10e0623ab9023b933a633",
+      "original_observation_sha256": "78122967757438da7e2016c02d969c7c89fa4179e4ccabe6e55804144b11547f",
+      "producer_precleanup_serial_hash_matches_final": true,
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "0be9a83c7d9047f12b1ac3de1a51f3e124d078055d5c6b8c84cb46607c349dce"
+      },
+      "carrier_readback_manifest_sha256": "40f650845d0ffe259b64fe9cd6b399eec943b345de53e762361c562bf1894d83",
+      "command_sha256": "011ac342c11d18f42495feca610011f3e30fe4dfe2631eaa2d59a548a43316a3",
+      "qemu_exit_code_before_deliberate_cleanup": null,
+      "early_screenshot_sha256": "4f71f2e431e1cad6723b6c867e261832d222087e0f3d84bcf82f02977c6eb623",
+      "final_screenshot_sha256": "4f71f2e431e1cad6723b6c867e261832d222087e0f3d84bcf82f02977c6eb623"
+    }
+  ],
+  "limits": "Ten expected refusals, one positive loader menu, one partial dispatcher entry, one inconclusive UKI/no-root-disk attempt. Earlier RSA3072 failures remain preserved separately."
+}

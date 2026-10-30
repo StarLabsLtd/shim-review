@@ -21,7 +21,7 @@ These are different provenance roles, not interchangeable source commits.
 - Linux source archive is https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.8.tar.xz,
   SHA-256 `65a07d5d0d88dac963b190f087ccd1498622cb742ccfa1b4e46f8110f08832a0`.
 
-Complete public source references still need final publication. Existing source
+BOOT-CHAIN-SOURCES.md supplies the focused source references. Existing source
 inspection confirms the EFI SSDT, ACPI configfs and prior-KGDB lockdown checks
 asked about by shim-review. Forced integrity lockdown is enabled early;
 module signing, SHA-512/RSA, strict devmem and kexec verification are enabled.
@@ -49,12 +49,15 @@ per-keyring traversal is not claimed. See fedora/module-runtime.md.
 
 ## Lifecycle and scope
 
-fedora/module-key-build-lifecycle.json records GENKEY and ordinary rmbuild
-removal of the generated-key build tree. It does not establish secure erasure,
-absence of backups/other copies or an approved production custody policy.
-Autogeneration alone cannot justify an ephemeral-key claim. Cross-build module
-acceptance remains possible if a trusted signer and compatible ABI are reused;
-the owner must settle the intended signing-key lifecycle.
+MODULE-KEY-LIFECYCLE.md resolves the selected build's lifecycle from its exact
+recipe and consumers: each full build unpacks fresh sources, generates a
+build-local key, signs its modules, packages no private key and removes its
+build tree during rmbuild. No private-key import/export or reuse step exists
+in that recipe. Independent fresh builds therefore have different signing
+authorities; compatible ABI alone does not authenticate another build's module.
+Existing generation/removal excerpts and trusted/untrusted module controls
+support this answer. It is not a claim of forensic erasure, absence of every
+possible host backup or newly executed cross-build validation.
 
 The exact vale3 S4 queue does not contain the later authenticated-size guard
 and worker-thaw fixes. That source limitation and full DAVE/S4 release acceptance

@@ -1,0 +1,56 @@
+{
+  "status": "PASS_Normal_only_shim_authentication_launch_gate",
+  "unsigned_shim_sha256": "6ee83a224ff0a1490a54795e668f0ac669098944eaef6abc4fc5fdd581c2e275",
+  "public_der_sha256": "d247d96c7dec493c3b89749e02852f032c247c9da80407fbdccaf2db51381b61",
+  "selected_Normal_signed_sha256": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787",
+  "fixture": "Fresh enforcing OVMF; unchanged signed binaries; only diagnostic SHIM_VERBOSE enabled, no validation-disable variable or user MOK enrolled. Embedded vendor certificate is exposed by shim through its normal runtime trust machinery.",
+  "cases": [
+    {
+      "case": "normal-systemd-verbose",
+      "verdict": "PASS_selected_Normal_UKI_authentication_and_load",
+      "uki_sha256": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787",
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c",
+        "::/EFI/Linux/current.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "serial_sha256": "4d6a6acfb655389b545fbeeceeaf2c8783f8eb1459729e2b2a712f4621cebf4b",
+      "observation_sha256": "131390c936dc67087a054b11ceebcdb949ddf24ff0db73182ed7c3c5dbd2e19a",
+      "command_sha256": "4ab5558ad1ac7e800b8ad480c78de3312e28fd49079c7f8ca8e0f4b11113e0e4",
+      "carrier_readback_sha256": "7fc187beef7717f47aaeea2dde3cbda70b0b04debeec1ed50b1451f29c129e61",
+      "scope": "UEFI authentication/load proof only; no completed OS/installer/desktop or Microsoft signature claimed."
+    },
+    {
+      "case": "normal-recovery-verbose",
+      "verdict": "PASS_selected_Normal_UKI_authentication_and_load",
+      "uki_sha256": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787",
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "6921692c94fecc689f049ab481300015d63a3d763bd1a56cd6463694e8106f20",
+        "::/EFI/Vale/Normal.efi": "116162dfc91ef670b74701496e33732ea6862a5953136a71dbc502446f856787"
+      },
+      "serial_sha256": "cef6a64d0da6e2c525022c3ee7ca54412876dcf03f479d3d6c2d4c235e55b511",
+      "observation_sha256": "fcfc179907b1c3d37e2e981c67eb359e6ac540c69f660a01489cab4fa687c5c6",
+      "command_sha256": "d5d6da86b528bea4e01dfe662e74041074da3234950c7c32ad78bee1aaaef40f",
+      "carrier_readback_sha256": "13a2f9fae2c2a874fdecef6f292c6604e4f7607ac2ff19d9567ba786dfa5a8ce",
+      "scope": "UEFI authentication/load proof only; no completed OS/installer/desktop or Microsoft signature claimed."
+    },
+    {
+      "case": "normal-recovery-unsigned",
+      "verdict": "PASS_unsigned_Normal_refused_via_recovery",
+      "uki_sha256": "0be9a83c7d9047f12b1ac3de1a51f3e124d078055d5c6b8c84cb46607c349dce",
+      "carrier_readback": {
+        "::/EFI/BOOT/BOOTX64.EFI": "4416e7ed983a4a3130976c9221b6cc3dae4271aa1922827898ab6b8da71422ac",
+        "::/EFI/BOOT/systemd-bootx64.efi": "6921692c94fecc689f049ab481300015d63a3d763bd1a56cd6463694e8106f20",
+        "::/EFI/Vale/Normal.efi": "0be9a83c7d9047f12b1ac3de1a51f3e124d078055d5c6b8c84cb46607c349dce"
+      },
+      "serial_sha256": "08bd5a525e23b50f5657532a6c58c5ddfa253f7cfe08bc4a7b6a98a700eb99c8",
+      "observation_sha256": "d96ca06ea84829b2a7da084b67c264d39597ce078a62cd47bed74dfe4350795b",
+      "command_sha256": "967fcbe446f485092d1338f5ca8982f2e7585d8185c15eb95f3ce78da50e7894",
+      "carrier_readback_sha256": "4b4ea6cbb2690f4a2decd5b380480acb473bcc101f45146eeff98dad2517d718",
+      "scope": "UEFI authentication/load proof only; no completed OS/installer/desktop or Microsoft signature claimed."
+    }
+  ],
+  "boundary": "Actual Authenticode/SBAT success and section/kernel loading for selected Normal UKI through both routes. No whole-OS/installer/desktop/DAVE qualification claimed. Recovery uses the SAME representative Normal UKI at its expected path, not a restored installer artifact.",
+  "historical_attempts": "Earlier quiet/inconclusive runs and RSA3072 failures retained unchanged; new diagnostic evidence is distinct."
+}

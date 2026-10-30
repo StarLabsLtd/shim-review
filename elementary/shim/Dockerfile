@@ -24,7 +24,7 @@ RUN curl -fL --retry 3 -o /tmp/shim.tar.bz2 \
 COPY elementary/signing/vale-secure-boot.der /build/vale.cer
 COPY elementary/shim/sbat.vale.csv /build/data/sbat.vale.csv
 WORKDIR /build
-RUN make -j4 VENDOR_CERT_FILE=vale.cer 'DEFAULT_LOADER=\\systemd-bootx64.efi' \
+RUN make -j2 VENDOR_CERT_FILE=vale.cer 'DEFAULT_LOADER=\\systemd-bootx64.efi' \
        ENABLE_CODESIGN_EKU=1 'POST_PROCESS_PE_FLAGS=-n -x' \
     && mkdir /output \
     && cp shimx64.efi mmx64.efi fbx64.efi /output/ \

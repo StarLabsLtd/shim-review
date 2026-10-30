@@ -1,0 +1,43 @@
+Selected diagnostic lines from fresh public EFI-only fixtures; not complete raw transcripts. Full originals retained privately, hash-bound by normal-chain-evidence.json.
+
+normal-systemd-verbose
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+verify.c:160:check_db_cert_in_ram() AuthenticodeVerify() succeeded: 1
+pe.c:519:verify_sbat_section() systemd-boot.vale, 1, Star Labs, systemd, 259.5-2.vale.fc44, https://starlabs.systems
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+Verification succeeded
+verify.c:160:check_db_cert_in_ram() AuthenticodeVerify() succeeded: 1
+pe.c:519:verify_sbat_section() systemd-stub.vale, 1, Star Labs, systemd, 259.5-2.vale.fc44, https://starlabs.systems
+pe.c:519:verify_sbat_section() uki.vale, 1, Star Labs, vale, 1, https://starlabs.systems
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+Verification succeeded
+Verification succeeded
+
+normal-recovery-verbose
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+verify.c:160:check_db_cert_in_ram() AuthenticodeVerify() succeeded: 1
+pe.c:519:verify_sbat_section() vale-recovery-dispatch, 1, Star Labs, vale-recovery-dispatch, 1, https://starlabs.systems
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+Verification succeeded
+verify.c:160:check_db_cert_in_ram() AuthenticodeVerify() succeeded: 1
+pe.c:519:verify_sbat_section() systemd-stub.vale, 1, Star Labs, systemd, 259.5-2.vale.fc44, https://starlabs.systems
+pe.c:519:verify_sbat_section() uki.vale, 1, Star Labs, vale, 1, https://starlabs.systems
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+Verification succeeded
+Verification succeeded
+
+normal-recovery-unsigned
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+verify.c:160:check_db_cert_in_ram() AuthenticodeVerify() succeeded: 1
+pe.c:519:verify_sbat_section() vale-recovery-dispatch, 1, Star Labs, vale-recovery-dispatch, 1, https://starlabs.systems
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+Verification succeeded
+verify.c:590:verify_buffer_authenticode() No signatures found
+Verification failed: Security Policy Violation
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+verify.c:160:check_db_cert_in_ram() AuthenticodeVerify() succeeded: 1
+pe.c:519:verify_sbat_section() vale-recovery-dispatch, 1, Star Labs, vale-recovery-dispatch, 1, https://starlabs.systems
+sbat.c:204:verify_sbat_helper() finished verifying SBAT data: Success
+Verification succeeded
+verify.c:590:verify_buffer_authenticode() No signatures found
+Verification failed: Security Policy Violation

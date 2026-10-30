@@ -1,88 +1,60 @@
-# Vale production signing-key requirements
+# Vale signing keys
 
-Status: proposed operating policy, not an attestation of deployed controls.
-Sean has specified two encrypted removable copies, locked offsite storage,
-and bringing one copy to the office only when signing is needed. The controls
-below must be implemented and checked before production signing or describing
-them as operational in the shim-review application.
+Sean Rhodes is responsible for signing, security updates and revocation.
+Emma Marsden is the secondary security contact and recovery custodian.
 
-## Custody and storage
+## Signing
 
-- Sean owns production signing and security updates. Name an authorized backup
-  custodian and establish emergency-revocation authority before release; Emma's
-  role as secondary security contact does not itself grant private-key access.
-- Keep two independently encrypted removable copies in locked offsite storage,
-  preferably at separate sites to avoid one incident destroying both. Bring
-  only one copy into the office for a signing session; keep the other offsite.
-- Use maintained full-volume encryption with a strong, unique unlock secret.
-  Store recovery/unlock material separately from the media, in a restricted
-  recovery arrangement available to the named custodian. Two encrypted copies
-  are not a usable backup if both depend on a lost password.
-- Track each copy by an internal identifier, authorized custodians and checkout
-  records. Do not put storage addresses, unlock secrets or private keys in the
-  public review repository. Keep media encrypted while stored or transported.
-- Do not retain working private-key copies on the build machine, in its backups,
-  containers, CI, repositories, artifact bundles or cloud-sync folders. Inventory
-  any existing copies and resolve them before claiming offsite-only custody.
+The RSA-4096 key was generated inside a YubiHSM 2 FIPS 140-3 running firmware
+2.4.1 in approved mode. It permits signing and encrypted wrapped backup.
 
-## Signing session
+Signing uses a non-exportable YubiKey HSM Auth credential, a separate password
+and touch. The signing role can sign in its assigned domain and cannot delegate
+access. Administrator access is held separately for provisioning and recovery.
 
-1. Build without the private key. Freeze the reviewed source revision and an
-   unsigned artifact manifest before attaching the signing media.
-2. Check that the build/signing machine is updated, access-controlled and trusted.
-   Stop untrusted workloads and remote access for the session; disconnect the
-   network where practical. Do not sign arbitrary caller-supplied files.
-   Encryption protects a locked disk, not a key exposed to a compromised host.
-3. Bring in one copy, unlock it only for the session, and restrict its mount to
-   the signing operator. Use a read-only mount where the signing tool supports
-   it. Reference the key on the media rather than copying it to local disk.
-4. Check the artifact hashes against the approved manifest. Sign only the
-   authorized release components; never log secrets or enable shell tracing
-   around unlock/signing operations. Prevent secret-bearing core dumps and
-   persistent swap/hibernation exposure during signing.
-5. Verify every resulting signature against the expected public certificate.
-   Record source revision, unsigned and signed hashes, certificate fingerprint,
-   operator, date and purpose in an access-controlled signing log.
-6. Unmount and lock the encrypted volume, disconnect the media and return it to
-   locked offsite storage. Shut down the signing host after the session to end
-   the unlocked-key exposure window. Do not claim this proves forensic erasure.
+We build without the private key. Before signing, we check each input against
+its recorded hash. Afterwards, we verify the signature and confirm that the
+payload sections, SBAT and NX settings are unchanged. The HSM is disconnected
+and stored securely when unused. Passwords and recovery shares are kept out of
+build inputs, source repositories and logs.
 
-If the build machine cannot be trusted or isolated adequately, use a dedicated
-offline signing machine or a suitable hardware signer instead. Do not weaken
-the above controls merely to automate unattended signing.
+## Certificate
 
-## Backup, recovery and compromise
+The self-signed certificate uses RSA-4096 and SHA256, with CA:FALSE,
+digitalSignature and codeSigning usage. It is valid from 29 October 2026
+22:31:38 UTC to 29 October 2031 22:31:38 UTC.
 
-- Before first production use, test recovery from each copy in a controlled
-  session: unlock it, confirm that its public key matches the intended Vale
-  certificate, and sign/verify a non-release test artifact. Repeat after any
-  backup replacement or credential change, and at least annually.
-- Replace failing media promptly while maintaining two verified copies. Check
-  both copies and the recovery arrangement before retiring the old media.
-- On lost media, suspicious signing activity or possible host compromise, stop
-  signing and preserve the relevant logs. Sean coordinates investigation;
-  notify the secondary contact and relevant shim/Microsoft security channels.
-- Do not restore service by simply reusing a possibly exposed key. Prepare a
-  replacement authority, assess affected artifacts, and coordinate replacement
-  shim, signed updates and appropriate SBAT/dbx revocation with reviewers and
-  Microsoft. Test recovery before withdrawing trust needed by existing users.
-- The certificate's ten-year validity is not a promise to use the key for ten
-  years. Review it annually and on incidents; plan migration before expiry.
-  The final lifetime rationale and distribution/revocation mechanism must be
-  included in the submission, not inferred from this policy alone.
+Public DER SHA256:
+`d247d96c7dec493c3b89749e02852f032c247c9da80407fbdccaf2db51381b61`.
 
-## Separate authorities and release gate
+Only the public certificate is embedded in shim. Replacing it requires a new
+reviewed shim and corresponding downstream signatures.
 
-The Vale Secure Boot key, kernel-module signing keys and the Certum EV CAB
-signer have different purposes. Record each authority's fingerprint, custodian,
-lifecycle and recovery process separately. Follow the EV provider's token/cloud
-signing requirements; this policy does not export or relocate its private key.
-Resolve the module-key lifecycle independently: kernel autogeneration does not
-prove that its key is ephemeral or that cross-build module loading is prevented.
+## Backup and recovery
 
-Before calling these controls operational, record that both media copies and
-recovery tests exist, custody and emergency roles are assigned, no unintended
-private-key copies remain, and a complete signing-session rehearsal passed.
-Keep that internal checklist and any sensitive evidence outside the public
-packet. Only publish an accurate summary of controls actually implemented;
-label future controls as planned.
+Two encrypted USB drives hold identical wrapped-key backups and public
+certificate records. They are kept in separate locked offsite locations.
+Sean and Emma each hold one recovery share, separately from the drives.
+Recovery requires both shares and either backup drive. The two-share split is
+implemented by Yubico's recovery software.
+
+Recovery was tested with a disposable RSA-3072 key: we removed the test key and
+wrapping key, reconstructed the wrapping key from both shares, restored the
+signing key from USB, checked its public identity and signed again through the
+YubiKey. The production RSA-4096 key uses the same backup and recovery procedure. Both
+production backup copies were written, synced and read back with matching
+checksums; the production key was not deleted for the test.
+
+If the HSM fails, we will recover onto a compatible approved replacement.
+Until then, signing stops. Recovery material remains protected after certificate
+expiry until retired.
+
+## Incidents
+
+On suspected compromise or key/device loss, we stop signing and contact the
+shim and Microsoft security teams. Sean coordinates affected-artifact checks,
+revocation and replacement.
+
+The kernel module-signing key and the Certum EV certificate used for Microsoft
+submission CABs are separate authorities. See MODULE-KEY-LIFECYCLE.md for the
+module-signing process.
