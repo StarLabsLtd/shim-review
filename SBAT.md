@@ -12,9 +12,11 @@ shim.vale,1,Star Labs,vale-shim,16.1,https://starlabs.systems
 
 ## Frozen Fedora 202610061000 cohort
 
-The installed signed systemd-boot (SHA-256
-ba71acffa69d2712a0e5ba6771489f9d4363a08e5a06000f507e1df5b421dda6)
-retains these rows, also present in its identical installed BOOTX64 fallback:
+The systemd-boot re-signed with the new Vale key (SHA-256
+206b229f2af8b094cbbb08d6520138efe3644274620ab74d228004076430378c)
+retains these rows. The original installed copy and its identical BOOTX64
+fallback had SHA-256
+ba71acffa69d2712a0e5ba6771489f9d4363a08e5a06000f507e1df5b421dda6.
 
 ```csv
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
@@ -23,9 +25,11 @@ systemd-boot.fedora,1,Fedora Linux,systemd,259.5-2.vale.fc44,https://bugzilla.re
 systemd-boot.vale,1,Star Labs,systemd,259.5-2.vale.fc44,https://starlabs.systems
 ```
 
-The ISO recovery dispatcher (SHA-256
-f7188dbec3bbe42f9413c79f4435949b65fd179381b5f2ac9dd732c191df3879),
-also exercised as shim's next loader in the recovery-path fixture:
+The recovery dispatcher re-signed with the new Vale key (SHA-256
+6921692c94fecc689f049ab481300015d63a3d763bd1a56cd6463694e8106f20)
+has these rows and was exercised as shim's next loader in the recovery-path
+fixture. The original ISO copy had SHA-256
+f7188dbec3bbe42f9413c79f4435949b65fd179381b5f2ac9dd732c191df3879.
 
 ```csv
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md

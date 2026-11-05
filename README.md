@@ -210,6 +210,11 @@ No. The embedded Vale certificate is separate. An EV certificate for signing
 Microsoft submission CABs is registered and active in Partner Center. It is not
 the Vale Secure Boot certificate embedded in shim.
 
+### What certificates are embedded in your shim, and what are their key types and sizes?
+
+One newly embedded certificate: the Vale Secure Boot RSA-4096 code-signing
+certificate. It is not reused from a previously accepted shim.
+
 ### Are you embedding a CA certificate in your shim?
 
 No. It is a self-signed RSA-4096 code-signing leaf with CA:FALSE, valid from
